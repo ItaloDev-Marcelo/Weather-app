@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #03012d; /* opcional, mas ajuda */
+}
+#root {
+  height: 100%;
+}
+
+
+
+.glassEffect {
+/* From https://css.glass */
+background: rgba(49, 47, 75, 0.78);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(49, 47, 75, 0.3);
+}
+
+
+/* body {
+    background-color: #03012dff;
+    height: 100dvh;
+    width: 100dvw;
+    background-size: fixed;
+} */
+
+
+
+@theme {
+  --breakpoint-tb: 60rem;
+}
+
+@plugin "daisyui"
+
+
