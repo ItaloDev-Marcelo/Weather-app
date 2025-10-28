@@ -13,12 +13,12 @@ function App() {
   const [temperature, setTemperature] = useState('celsius');
   const [windSpeed, setWindSpeed] = useState('km/h');
   const [precipitation, setPrecipitation] = useState('mm');
-
-
+  const [weekDay,setWeekDay] = useState('—')
+  
   const SelectTemperature = (unit: string) => setTemperature(unit);
   const SelectWindSpeed = (unit: string) => setWindSpeed(unit);
   const SelectPrecipitation = (unit: string) => setPrecipitation(unit);
-
+  const SelectDay = (day: string) => setWeekDay(day);
 
 
   async function SearchByName(name: string) {
@@ -33,6 +33,8 @@ function App() {
         console.log('Data not found', userNotFound)
         return;
       }
+
+
 
       const { latitude, longitude } = apiResponse.results[0];
       const dadosDoClima = await fetch(
@@ -61,6 +63,8 @@ function App() {
     if(city) SearchByName(city)
   }, [city])
 
+  console.log(apiData)
+
   
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
      console.log(event.target.value)
@@ -77,6 +81,7 @@ function App() {
   }
 
 
+
   
   return (
     <div >
@@ -91,7 +96,8 @@ function App() {
 
      {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
 
-     <WeatherGrid />
+     <WeatherGrid value={weekDay}
+  hundleFunction={SelectDay} />
 
 
     </div>

@@ -4,5 +4,6 @@ export type NavProps = {
     SelectPrecipitation: (unit:string) => void,
     temperature: string,
     windSpeed: string,
-    precipitation: string
+    precipitation: string,
+    isIcon?: boolean 
 }
