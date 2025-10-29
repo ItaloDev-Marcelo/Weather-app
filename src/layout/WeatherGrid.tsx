@@ -3,13 +3,13 @@ import DropContainer from '../components/drop/DropContainer';
 import ListItems from '../components/drop/Drop-items/ListItems';
 import type { WeatherApiResponse } from '../types/Api.type';
 
-type WeatherGridProps = {
-  hundleFunction: (day: string) => void,
-  value: string,
-  Data: WeatherApiResponse[]
-}
+// type WeatherGridProps = {
+//   hundleFunction: (day: string) => void,
+//   value: string,
+//   Data: WeatherApiResponse[]
+// }
 
-const WeatherGrid = ({ hundleFunction, value, Data}: WeatherGridProps) => {
+const WeatherGrid = () => {
 
 
 
@@ -63,7 +63,7 @@ const WeatherGrid = ({ hundleFunction, value, Data}: WeatherGridProps) => {
            lg:mt-3 lg:ml-5  tb:h-100 lg:w-[25%]  h-120 lg:h-144 lg:mb-1 rounded-2xl p-4'>
         <div className='flex flex-row gap-2 justify-between items-center'>
           <h4 className='text-white font-semibold'>Hourly forecast</h4>
-          <DropContainer icon1={false} icon2={true} name={value}>
+          {/* <DropContainer icon1={false} icon2={true} name={value}>
             <ListItems hundleFunction={hundleFunction} label='Monday' currentValue={value} value='Monday' isIcon={false} />
             <ListItems hundleFunction={hundleFunction} label='Tuesday' currentValue={value} value='Tuesday' isIcon={false} />
             <ListItems hundleFunction={hundleFunction} label='Wednesday' currentValue={value} value='Wednesday' isIcon={false} />
@@ -71,7 +71,7 @@ const WeatherGrid = ({ hundleFunction, value, Data}: WeatherGridProps) => {
             <ListItems hundleFunction={hundleFunction} label='friday' currentValue={value} value='friday' isIcon={false} />
             <ListItems hundleFunction={hundleFunction} label='Saturday' currentValue={value} value='Saturday' isIcon={false} />
             <ListItems hundleFunction={hundleFunction} label='Sunday' currentValue={value} value='Sunday' isIcon={false} />
-          </DropContainer>
+          </DropContainer> */}
         </div>
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>

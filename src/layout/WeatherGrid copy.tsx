@@ -4,7 +4,7 @@ import ListItems from '../components/drop/Drop-items/ListItems';
 import type { WeatherApiResponse } from '../types/Api.type';
 
 type WeatherGridProps = {
-  hundleFunction: (day: string) => void,
+  selec: (day: string) => void,
   value: string,
   Data: WeatherApiResponse[]
 }

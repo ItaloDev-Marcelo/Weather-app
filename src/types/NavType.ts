@@ -1,14 +1,17 @@
-import type { hundleFunction } from "./hunldeFunction"
-import type { State} from "./Reduce.type"
+import type { State } from "../hook/UseReducer"
+// import type { hundleFunction } from "./hunldeFunction"
+import type {TypeActionData} from "./Reduce.type"
+
+export type SelectType = (type:TypeActionData, value: string) => void
 
 export type NavProps = {
-    SelectType: hundleFunction,
+    SelectType: SelectType,
     state: State,
     isIcon?: boolean 
 }
 
 
 export type SelctType = {
-    SelectType: hundleFunction,
+    SelectType: SelectType
     state: State
 }

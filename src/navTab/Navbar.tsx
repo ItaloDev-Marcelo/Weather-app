@@ -11,7 +11,14 @@ const Navbar = ({ SelectType, state}: NavProps) => {
              <li><button className='hover:bg-[#3d3b5eff]'>Switch to Imperial</button></li>
              <ListReadOnly name='Temperature' />
               <ListItems hundleFunction={SelectType} label="Celsius (°C)" 
-        currentValue={state.temperature} value="celsius"  isIcon={true} />
+        ReduceType='TEMPERATURE'  currentValue={state.temperature}
+        value="celsius"  isIcon={true} />
+               <ListItems hundleFunction={SelectType} label="Fahrenheit (°F)" 
+           ReduceType='TEMPERATURE'  currentValue={state.temperature} 
+           value="fahrenheit"  isIcon={true} />
+
+
+{/* 
         <ListItems hundleFunction={SelectType} label="Fahrenheit (°F)" 
         currentValue={state.temperature} value="fahrenheit"  isIcon={true} />
              <ListReadOnly name='Wind Speed' />
@@ -23,7 +30,7 @@ const Navbar = ({ SelectType, state}: NavProps) => {
               <ListItems hundleFunction={SelectType} label="Millimeters (mm)" 
         currentValue={state.precipitation} value="mm"  isIcon={true} />
         <ListItems hundleFunction={SelectType} label="Inches (in)" 
-        currentValue={state.precipitation} value="in"  isIcon={true} />
+        currentValue={state.precipitation} value="in"  isIcon={true} /> */}
         </DropContainer>
     </nav>
   )

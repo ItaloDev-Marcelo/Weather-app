@@ -15,15 +15,15 @@ function App() {
   const [apiData,setApiData] = useState<WeatherApiResponse[]>([]);
   const [state, dispatch] = useReducer(reduceData, initialState)
 
-  // const [temperature, setTemperature] = useState('celsius');
-  // const [windSpeed, setWindSpeed] = useState('km/h');
-  // const [precipitation, setPrecipitation] = useState('mm');
-  // const [weekDay,setWeekDay] = useState('—')
+  const [temperature, setTemperature] = useState('celsius');
+  const [windSpeed, setWindSpeed] = useState('km/h');
+  const [precipitation, setPrecipitation] = useState('mm');
+  const [weekDay,setWeekDay] = useState('—')
   
-  // const SelectTemperature = (unit: string) => setTemperature(unit);
-  // const SelectWindSpeed = (unit: string) => setWindSpeed(unit);
-  // const SelectPrecipitation = (unit: string) => setPrecipitation(unit);
-  // const SelectDay = (day: string) => setWeekDay(day);
+  const SelectTemperature = (unit: string) => setTemperature(unit);
+  const SelectWindSpeed = (unit: string) => setWindSpeed(unit);
+  const SelectPrecipitation = (unit: string) => setPrecipitation(unit);
+  const SelectDay = (day: string) => setWeekDay(day);
 
   const SelectType = (type:TypeActionData, value: string) => dispatch({type: type, payload: value})
 

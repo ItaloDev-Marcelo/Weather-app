@@ -1,11 +1,13 @@
-import type { hundleFunction } from "./hunldeFunction"
+import type { SelectType } from "./NavType"
+import type { TypeActionData } from "./Reduce.type"
 
 
 export type ListProps = {
-    hundleFunction: hundleFunction,
+    hundleFunction: SelectType,
     label: string,
     currentValue: string,
     value: string,
-    isIcon?: boolean
+    isIcon?: boolean,
+    ReduceType: TypeActionData
 }
 
