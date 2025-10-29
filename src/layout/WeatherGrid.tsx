@@ -8,10 +8,9 @@ import type { State } from '../hook/UseReducer';
 type WeatherGridProps = {
    SelectType: SelectType,
   state: State,
-  value: string,
 }
 
-const WeatherGrid = ({SelectType, state, value}:WeatherGridProps) => {
+const WeatherGrid = ({SelectType, state}:WeatherGridProps) => {
 
 
 
@@ -65,15 +64,15 @@ const WeatherGrid = ({SelectType, state, value}:WeatherGridProps) => {
            lg:mt-3 lg:ml-5  tb:h-100 lg:w-[25%]  h-120 lg:h-144 lg:mb-1 rounded-2xl p-4'>
         <div className='flex flex-row gap-2 justify-between items-center'>
           <h4 className='text-white font-semibold'>Hourly forecast</h4>
-          {/* <DropContainer icon1={false} icon2={true} name={value}>
-            <ListItems hundleFunction={hundleFunction} label='Monday' currentValue={value} value='Monday' isIcon={false} />
-            <ListItems hundleFunction={hundleFunction} label='Tuesday' currentValue={value} value='Tuesday' isIcon={false} />
-            <ListItems hundleFunction={hundleFunction} label='Wednesday' currentValue={value} value='Wednesday' isIcon={false} />
-            <ListItems hundleFunction={hundleFunction} label='Thursday' currentValue={value} value='Thursday' isIcon={false} />
-            <ListItems hundleFunction={hundleFunction} label='friday' currentValue={value} value='friday' isIcon={false} />
-            <ListItems hundleFunction={hundleFunction} label='Saturday' currentValue={value} value='Saturday' isIcon={false} />
-            <ListItems hundleFunction={hundleFunction} label='Sunday' currentValue={value} value='Sunday' isIcon={false} />
-          </DropContainer> */}
+          <DropContainer icon1={false} icon2={true} name={state.weekDay}>
+            <ListItems hundleFunction={SelectType} label='Monday' currentValue={state.weekDay} value='Monday' ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Tuesday' currentValue={state.weekDay} value='Tuesday' ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Wednesday' currentValue={state.weekDay} value='Wednesday' ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Thursday' currentValue={state.weekDay} value='Thursday' ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='friday' currentValue={state.weekDay} value='friday' ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Saturday' currentValue={state.weekDay} value='Saturday' ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Sunday' currentValue={state.weekDay} value='Sunday' ReduceType='WEEKDAY' isIcon={false} />
+          </DropContainer>
         </div>
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
