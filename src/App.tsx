@@ -15,16 +15,6 @@ function App() {
   const [apiData,setApiData] = useState<WeatherApiResponse[]>([]);
   const [state, dispatch] = useReducer(reduceData, initialState)
 
-  const [temperature, setTemperature] = useState('celsius');
-  const [windSpeed, setWindSpeed] = useState('km/h');
-  const [precipitation, setPrecipitation] = useState('mm');
-  const [weekDay,setWeekDay] = useState('—')
-  
-  const SelectTemperature = (unit: string) => setTemperature(unit);
-  const SelectWindSpeed = (unit: string) => setWindSpeed(unit);
-  const SelectPrecipitation = (unit: string) => setPrecipitation(unit);
-  const SelectDay = (day: string) => setWeekDay(day);
-
   const SelectType = (type:TypeActionData, value: string) => dispatch({type: type, payload: value})
 
 
@@ -91,19 +81,11 @@ function App() {
 
   
   return (
-    <div >
-          <Navbar
-     state={state}
-     SelectType={SelectType}
-       />
+    <div>
+    <Navbar state={state} SelectType={SelectType} />
      {error || apiData === undefined  ? <Error reset={reset}/> : <Form searchInput={searchInput}  handleChange={handleChange} />}
-
      {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
-
-     <WeatherGrid  state={state}
-     SelectType={SelectType} />
-
-
+     <WeatherGrid  state={state} SelectType={SelectType} />
     </div>
   )
 }

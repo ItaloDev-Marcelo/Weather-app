@@ -12,9 +12,6 @@ type WeatherGridProps = {
 
 const WeatherGrid = ({SelectType, state}:WeatherGridProps) => {
 
-
-
-
   return (
     <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 justify-center'>
       <div className='flex flex-col  gap-2.5 tb-gap-3 lg:gap-5'>
