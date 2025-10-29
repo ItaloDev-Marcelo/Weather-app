@@ -41,13 +41,13 @@ const WeatherGrid = ({SelectType, state}:CommunType) => {
         <h4 className='text-white font-bold'>Daily forecast</h4>
 
         <div className='grid grid-cols-3 md:grid-cols-7  grid-rows-3 lg:grid-cols-7 lg:grid-rows-1 gap-3 lg:gap-2.5'>
-          <div className='  glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect '></div>
-          <div className='  glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect '></div>
-          <div className='  glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect '></div>
-          <div className='  glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect '></div>
-          <div className='  glassEffect  w-24 xl:w-29 h-35  md:h-40 rounded-2xl glassEffect '></div>
-          <div className='  glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect '></div>
-          <div className='  glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect '></div>
+          <div className='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect'></div>
+          <div className='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect'></div>
+          <div className='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect'></div>
+          <div className='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect'></div>
+          <div className='glassEffect  w-24 xl:w-29 h-35  md:h-40 rounded-2xl glassEffect'></div>
+          <div className='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect'></div>
+          <div className='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect'></div>
         </div>
       </div>
       <div className='glassEffect tb:w-[81.5%] w-[100%] tb:mt-[-35%]  mt-3 md:mt-[-40%]  
