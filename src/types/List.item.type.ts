@@ -1,4 +1,4 @@
-import type { SelectType } from "./NavType"
+import type { SelectType } from "./ComumReduce.type"
 import type { TypeActionData } from "./Reduce.type"
 
 

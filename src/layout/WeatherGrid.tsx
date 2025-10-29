@@ -2,15 +2,8 @@ import { PulseLoader } from 'react-spinners'
 import DropContainer from '../components/drop/DropContainer';
 import ListItems from '../components/drop/Drop-items/ListItems';
 // import type { WeatherApiResponse } from '../types/Api.type';
-import type { SelectType } from '../types/NavType';
-import type { State } from '../hook/UseReducer';
-
-type WeatherGridProps = {
-   SelectType: SelectType,
-  state: State,
-}
-
-const WeatherGrid = ({SelectType, state}:WeatherGridProps) => {
+import type { CommunType } from '../types/ComumReduce.type';
+const WeatherGrid = ({SelectType, state}:CommunType) => {
 
   return (
     <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 justify-center'>

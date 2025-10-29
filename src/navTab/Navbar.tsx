@@ -1,9 +1,9 @@
 import Logo from '../assets/images/logo.svg'
-import type { NavProps } from '../types/NavType'
+import type { CommunType } from '../types/ComumReduce.type'
 import DropContainer from '../components/drop/DropContainer'
 import ListReadOnly from '../components/drop/Drop-items/ListReadOnly'
 import ListItems from '../components/drop/Drop-items/ListItems'
-const Navbar = ({ SelectType, state }: NavProps) => {
+const Navbar = ({ SelectType, state }: CommunType) => {
   return (
     <nav className='flex flex-row justify-between items-center p-4 lg:px-45 m-2.5 lg:mt-7 lg:ml-5 '>
       <a href="/"><img src={Logo} className='w-30 lg:w-40 xl:w-45' alt='weather now logo' /></a>

@@ -4,7 +4,7 @@ import type {TypeActionData} from "./Reduce.type"
 
 export type SelectType = (type:TypeActionData, value: string) => void
 
-export type NavProps = {
+export type CommunType = {
     SelectType: SelectType,
     state: State,
     isIcon?: boolean 

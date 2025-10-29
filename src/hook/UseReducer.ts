@@ -5,6 +5,7 @@ export type State = {
   precipitation: string
   weekDay: string
 };
+
 const initialState = {temperature: 'celsius', windSpeed: 'km/h', precipitation: 'mm', weekDay: '—'};
 
 const ActionData = {
