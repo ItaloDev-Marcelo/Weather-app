@@ -100,8 +100,8 @@ function App() {
 
      {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
 
-     <WeatherGrid value={weekDay}
-  hundleFunction={SelectDay} Data={apiData} />
+     <WeatherGrid  state={state}
+     SelectType={SelectType} />
 
 
     </div>

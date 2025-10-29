@@ -1,15 +1,17 @@
 import { PulseLoader } from 'react-spinners'
 import DropContainer from '../components/drop/DropContainer';
 import ListItems from '../components/drop/Drop-items/ListItems';
-import type { WeatherApiResponse } from '../types/Api.type';
+// import type { WeatherApiResponse } from '../types/Api.type';
+import type { SelectType } from '../types/NavType';
+import type { State } from '../hook/UseReducer';
 
-// type WeatherGridProps = {
-//   hundleFunction: (day: string) => void,
-//   value: string,
-//   Data: WeatherApiResponse[]
-// }
+type WeatherGridProps = {
+   SelectType: SelectType,
+  state: State,
+  value: string,
+}
 
-const WeatherGrid = () => {
+const WeatherGrid = ({SelectType, state, value}:WeatherGridProps) => {
 
 
 
