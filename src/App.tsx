@@ -92,19 +92,6 @@ function App() {
   
   return (
     <div >
-      
-     {/* <Navbar
-     state={state}
-     SelectType={SelectType}
-     
-      SelectTemperature={SelectTemperature}
-      SelectWindSpeed={SelectWindSpeed}
-       SelectPrecipitation={SelectPrecipitation}
-       temperature={temperature}
-       windSpeed={windSpeed}
-       precipitation={precipitation}
-       /> */}
-
           <Navbar
      state={state}
      SelectType={SelectType}
