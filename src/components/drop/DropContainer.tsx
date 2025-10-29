@@ -1,6 +1,6 @@
 import confIcon from '../../assets/images/icon-units.svg';
 import DropIcon from '../../assets/images/icon-dropdown.svg';
-type DropContainerProps = {children: React.ReactNode, icon1: boolean, icon2: boolean, name: string}
+import type { DropContainerProps } from '../../types/Drop.Container.type';
 
 const DropContainer = ({children, icon1, icon2, name}:DropContainerProps) => {
   return (

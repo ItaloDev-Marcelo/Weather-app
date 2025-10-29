@@ -3,27 +3,27 @@ import type { NavProps } from '../types/NavType'
 import DropContainer from '../components/drop/DropContainer'
 import ListReadOnly from '../components/drop/Drop-items/ListReadOnly'
 import ListItems from '../components/drop/Drop-items/ListItems'
-const Navbar = ({ SelectTemperature, SelectWindSpeed, SelectPrecipitation, temperature, windSpeed, precipitation }: NavProps) => {
+const Navbar = ({ SelectType, state}: NavProps) => {
   return (
     <nav className='flex flex-row justify-between items-center p-4 lg:px-45 m-2.5 lg:mt-7 lg:ml-5 '>
       <a href="/"><img src={Logo} className='w-30 lg:w-40 xl:w-45' alt='weather now logo' /></a>
         <DropContainer icon1={true} icon2={true} name='Units'>
              <li><button className='hover:bg-[#3d3b5eff]'>Switch to Imperial</button></li>
              <ListReadOnly name='Temperature' />
-              <ListItems hundleFunction={SelectTemperature} label="Celsius (°C)" 
-        currentValue={temperature} value="celsius"  isIcon={true} />
-        <ListItems hundleFunction={SelectTemperature} label="Fahrenheit (°F)" 
-        currentValue={temperature} value="fahrenheit"  isIcon={true} />
+              <ListItems hundleFunction={SelectType} label="Celsius (°C)" 
+        currentValue={state.temperature} value="celsius"  isIcon={true} />
+        <ListItems hundleFunction={SelectType} label="Fahrenheit (°F)" 
+        currentValue={state.temperature} value="fahrenheit"  isIcon={true} />
              <ListReadOnly name='Wind Speed' />
-                     <ListItems hundleFunction={SelectWindSpeed} label="km/h" 
-        currentValue={windSpeed} value="km/h"  isIcon={true} />
-        <ListItems hundleFunction={SelectWindSpeed} label="mph" 
-        currentValue={windSpeed} value="mph"  isIcon={true} />
+                     <ListItems hundleFunction={SelectType} label="km/h" 
+        currentValue={state.windSpeed} value="km/h"  isIcon={true} />
+        <ListItems hundleFunction={SelectType} label="mph" 
+        currentValue={state.windSpeed} value="mph"  isIcon={true} />
              <ListReadOnly name='Precipitation' />    
-              <ListItems hundleFunction={SelectPrecipitation} label="Millimeters (mm)" 
-        currentValue={precipitation} value="mm"  isIcon={true} />
-        <ListItems hundleFunction={SelectPrecipitation} label="Inches (in)" 
-        currentValue={precipitation} value="in"  isIcon={true} />
+              <ListItems hundleFunction={SelectType} label="Millimeters (mm)" 
+        currentValue={state.precipitation} value="mm"  isIcon={true} />
+        <ListItems hundleFunction={SelectType} label="Inches (in)" 
+        currentValue={state.precipitation} value="in"  isIcon={true} />
         </DropContainer>
     </nav>
   )

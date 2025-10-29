@@ -2,26 +2,33 @@ import Navbar from './navTab/Navbar';
 import Error from './components/Error';
 import Form from './Form/Form';
 import WeatherGrid from './layout/WeatherGrid'
-import { useEffect, useState } from 'react'
+import {type WeatherApiResponse} from './types/Api.type'
+import { useEffect, useReducer, useState } from 'react'
+import {reduceData, initialState} from './hook/UseReducer'
+import type { TypeActionData } from './types/Reduce.type';
 function App() {
 
   const [city, setCity] = useState('Salvador')
   const [search, setSearch] = useState('')
   const [error, setError] = useState(false)
   const [userNotFound, setUserNotFound] = useState(false)
-  const [apiData,setApiData] = useState([]);
-  const [temperature, setTemperature] = useState('celsius');
-  const [windSpeed, setWindSpeed] = useState('km/h');
-  const [precipitation, setPrecipitation] = useState('mm');
-  const [weekDay,setWeekDay] = useState('—')
+  const [apiData,setApiData] = useState<WeatherApiResponse[]>([]);
+  const [state, dispatch] = useReducer(reduceData, initialState)
+
+  // const [temperature, setTemperature] = useState('celsius');
+  // const [windSpeed, setWindSpeed] = useState('km/h');
+  // const [precipitation, setPrecipitation] = useState('mm');
+  // const [weekDay,setWeekDay] = useState('—')
   
-  const SelectTemperature = (unit: string) => setTemperature(unit);
-  const SelectWindSpeed = (unit: string) => setWindSpeed(unit);
-  const SelectPrecipitation = (unit: string) => setPrecipitation(unit);
-  const SelectDay = (day: string) => setWeekDay(day);
+  // const SelectTemperature = (unit: string) => setTemperature(unit);
+  // const SelectWindSpeed = (unit: string) => setWindSpeed(unit);
+  // const SelectPrecipitation = (unit: string) => setPrecipitation(unit);
+  // const SelectDay = (day: string) => setWeekDay(day);
+
+  const SelectType = (type:TypeActionData, value: string) => dispatch({type: type, payload: value})
 
 
-  async function SearchByName(name: string) {
+  async function SearchByName(name: string)  {
     try {
       const apiPath = await fetch(
         `https://geocoding-api.open-meteo.com/v1/search?name=${name}`
@@ -55,7 +62,8 @@ function App() {
   }
 
 
-  
+
+ 
 
   
 
@@ -63,7 +71,6 @@ function App() {
     if(city) SearchByName(city)
   }, [city])
 
-  console.log(apiData)
 
   
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -85,19 +92,29 @@ function App() {
   
   return (
     <div >
-     <Navbar SelectTemperature={SelectTemperature}
+      
+     {/* <Navbar
+     state={state}
+     SelectType={SelectType}
+     
+      SelectTemperature={SelectTemperature}
       SelectWindSpeed={SelectWindSpeed}
        SelectPrecipitation={SelectPrecipitation}
        temperature={temperature}
        windSpeed={windSpeed}
        precipitation={precipitation}
+       /> */}
+
+          <Navbar
+     state={state}
+     SelectType={SelectType}
        />
      {error || apiData === undefined  ? <Error reset={reset}/> : <Form searchInput={searchInput}  handleChange={handleChange} />}
 
      {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
 
      <WeatherGrid value={weekDay}
-  hundleFunction={SelectDay} />
+  hundleFunction={SelectDay} Data={apiData} />
 
 
     </div>

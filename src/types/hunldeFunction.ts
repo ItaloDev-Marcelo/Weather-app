@@ -1,0 +1,1 @@
+export type  hundleFunction = (unit: string) => void

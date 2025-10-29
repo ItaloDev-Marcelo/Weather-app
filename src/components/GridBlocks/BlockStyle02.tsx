@@ -1,6 +1,7 @@
-type BlockStyle = {hour: string, dayTime: string, icon: string, temp: string, classInLine?: string}
+import type { BlockStyle } from "../../types/Block.St.type"
 
-const BlockStyle02 = ({hour, dayTime, icon, temp, classInLine}:BlockStyle) => {
+
+const BlockStyle02 = ({Data, icon, classInLine}:BlockStyle) => {
   return (
      <div className={classInLine}>
        <div className="flex flex-row justify-between items-center gap-2">

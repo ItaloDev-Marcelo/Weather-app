@@ -1,13 +1,5 @@
 import checkIcon from '../../../assets/images/icon-checkmark.svg';
-
-type ListProps = {
-    hundleFunction: (unit: string) => void,
-    label: string,
-    currentValue: string,
-    value: string,
-    isIcon?: boolean
-}
-
+import type { ListProps } from '../../../types/List.item.type';
 
 const ListItems = ({hundleFunction, label, currentValue, value, isIcon}:ListProps ) => {
   return (

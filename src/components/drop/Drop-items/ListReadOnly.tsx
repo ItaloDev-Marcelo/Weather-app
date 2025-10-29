@@ -1,5 +1,5 @@
+import type { ListReadOnlyProps } from "../../../types/List.ReadOnly.type"
 
-type ListReadOnlyProps = {name:string}
 
 const ListReadOnly = ({name}:ListReadOnlyProps) => {
   return (

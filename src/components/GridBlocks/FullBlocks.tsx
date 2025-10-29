@@ -1,24 +1,23 @@
-type FullBlocksProps = {classInLine: string, type: number}
+type FullBlocksProps = {classInLine: string, type: number,data: WeatherApiResponse }
+import type { WeatherApiResponse } from '../../types/Api.type';
 import BlockStyle01 from './BlockStyle01';
 import BlockStyle02 from './BlockStyle02';
-import EmpathyBlocks from './EmpatyBlocks';
+import EmpatyBlocks  from './EmpatyBlocks';
 
 
-
-
-const FullBlocks = ({classInLine, type}:FullBlocksProps) => {
+const FullBlocks = ({classInLine, type, data}:FullBlocksProps) => {
 
     console.log(type)
 
-   const SelectGridSt = (type) => {
-       switch(type) {
+   const SelectGridSt = (t: number) => {
+       switch(t) {
             case 1:
-            return <BlockStyle01 classInLine={classInLine} day={day} icon={icon} max={max} min={min} />
+            return <BlockStyle01 classInLine={classInLine} Data={data} />
             break
              case 2:
-            return <BlockStyle02 classInLine={classInLine} hour={hour} dayTime={dayTime} icon={icon} temp={temp}  />
+            return <BlockStyle02 classInLine={classInLine} Data={data}  />
             default:
-              return <EmpathyBlocks classInLine={classInLine} />
+              return <EmpatyBlocks  classInLine={classInLine} />
             break  
        }
    }
@@ -29,7 +28,7 @@ const FullBlocks = ({classInLine, type}:FullBlocksProps) => {
 
   return (
     <div>
-
+       { SelectGridSt(type, data)}
     </div>
   )
 }

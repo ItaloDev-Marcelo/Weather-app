@@ -1,6 +1,6 @@
-type BlockStyle = {day: string, icon: string, max: number, min: number, classInLine: string}
+import type { BlockStyle } from "../../types/Block.St.type"
 
-const BlockStyle01 = ({day, icon, max, min, classInLine}:BlockStyle) => {
+const BlockStyle01 = ({Data, classInLine, icon}:BlockStyle) => {
   return (
        <div className={classInLine}>
           <div className="flex flex-col items-center justify-center gap-2 ">
