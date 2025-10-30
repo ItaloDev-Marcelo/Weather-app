@@ -3,22 +3,24 @@ import Error from './components/Error';
 import Form from './Form/Form';
 import WeatherGrid from './layout/WeatherGrid'
 import {type WeatherApiResponse} from './types/Api.type'
-import { useEffect, useReducer, useState } from 'react'
+import { useCallback, useEffect, useReducer, useState } from 'react'
 import {reduceData, initialState} from './hook/UseReducer'
 import type { TypeActionData } from './types/Reduce.type';
+
+import BlockStyle02 from './components/GridBlocks/BlockStyle02';
 function App() {
 
   const [city, setCity] = useState('Salvador')
   const [search, setSearch] = useState('')
   const [error, setError] = useState(false)
   const [userNotFound, setUserNotFound] = useState(false)
-  const [apiData,setApiData] = useState<WeatherApiResponse[]>([]);
+  const [apiData,setApiData] = useState<WeatherApiResponse | null>(null);
   const [state, dispatch] = useReducer(reduceData, initialState)
 
   const SelectType = (type:TypeActionData, value: string) => dispatch({type: type, payload: value})
 
 
-  async function SearchByName(name: string)  {
+  const SearchByName = useCallback(async (name: string) => {
     try {
       const apiPath = await fetch(
         `https://geocoding-api.open-meteo.com/v1/search?name=${name}`
@@ -49,22 +51,17 @@ function App() {
       console.error(err);
          setError(true)
     }
-  }
-
-
-
- 
-
-  
+  }, []
+)
 
   useEffect(() => {
-    if(city) SearchByName(city)
-  }, [city])
+    SearchByName(city)
+  }, [SearchByName, city])
 
+  console.log(apiData)
 
   
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-     console.log(event.target.value)
      setSearch(event.target.value)
   }
 
@@ -86,6 +83,8 @@ function App() {
      {error || apiData === undefined  ? <Error reset={reset}/> : <Form searchInput={searchInput}  handleChange={handleChange} />}
      {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
      <WeatherGrid  state={state} SelectType={SelectType} />
+
+     <BlockStyle02 Data={apiData} icon={''} classInLine={''} />
     </div>
   )
 }

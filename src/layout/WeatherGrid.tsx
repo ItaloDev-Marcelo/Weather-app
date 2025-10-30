@@ -6,7 +6,7 @@ import type { CommunType } from '../types/ComumReduce.type';
 const WeatherGrid = ({SelectType, state}:CommunType) => {
 
   return (
-    <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 justify-center'>
+    <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 jusify-center'>
       <div className='flex flex-col  gap-2.5 tb-gap-3 lg:gap-5'>
         <div className='glassEffect  w-[100%] h-50 tb:h-55 rounded-2xl'>
           <div className='flex flex-col items-center justify-center mt-23'>
