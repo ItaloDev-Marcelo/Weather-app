@@ -29,7 +29,6 @@ function App() {
 
       if (!apiResponse.results || apiResponse.results.length === 0 ) {
         setUserNotFound(true)
-        console.log('Data not found', userNotFound)
         return;
       }
 
@@ -43,11 +42,9 @@ function App() {
       const climaResult = await dadosDoClima.json();
         setUserNotFound(false)
         setError(false)
-        console.log('Data found', userNotFound)
         setApiData(climaResult);
     
     } catch (err) {
-      console.log('page not found')
       console.error(err);
          setError(true)
     }
@@ -84,7 +81,7 @@ function App() {
      {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
      <WeatherGrid  state={state} SelectType={SelectType} />
 
-     <BlockStyle02 Data={apiData} icon={''} classInLine={''} />
+     {apiData && <BlockStyle02 Data={apiData} icon={''} classInLine={''} />}
     </div>
   )
 }
