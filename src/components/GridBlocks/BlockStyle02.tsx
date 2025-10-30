@@ -5,7 +5,8 @@ const BlockStyle02 = ({Data, icon, classInLine}:BlockStyle) => {
 
   const FormateData = Data.hourly.time.map((t, i) => ({
     time: t.slice(11,16),
-    temperature: Data.hourly.temperature_2m[i]
+    temperature: Data.hourly.temperature_2m[i],
+    weathercode: Data.hourly.weathercode[i]
   }))
 
   console.log(FormateData)
