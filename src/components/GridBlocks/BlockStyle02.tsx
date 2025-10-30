@@ -3,22 +3,19 @@ import type { BlockStyle } from "../../types/Block.St.type"
 
 const BlockStyle02 = ({Data, icon, classInLine}:BlockStyle) => {
 
-  const FormateData = Data.hourly.time.map((t, i) => ({
-    time: t.slice(11,16),
-    temperature: Data.hourly.temperature_2m[i],
-    weathercode: Data.hourly.weathercode[i]
-  }))
 
-  console.log(FormateData)
 
   return (
      <div className={classInLine}>
-       <div className="flex flex-row justify-between items-center gap-2">
-        <div className='flex flex-row justify-between items-center px-2'>
-          <h5>{}  </h5>
-          <img src={icon} alt=''/>
-       </div>
-          <p>{}°</p>
+       <div className="flex flex-row justify-between w-full  gap-2 bg-green-300">
+        <div className='flex flex-row justify-between items-center bg-red-400 px-2'>
+          <div>
+              <img src={icon} alt=''/>
+            <h5>{Data?.time} {Data && Data?.time > '12' ? 'PM' : 'AM' } </h5>
+          </div>
+       
+        </div>
+          <p>{Data?.temperature}°</p>
        </div>
      </div>
   )

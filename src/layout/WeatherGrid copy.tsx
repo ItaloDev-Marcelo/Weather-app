@@ -61,14 +61,28 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
                 
 
 
-                
+                  {
+                    data !== null ? filterbyDay?.map((data1) => (
+                           <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40 
+                            rounded-2xl glassEffect' type={2} data={data1} />
+                    )) : <>
+                  <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3} />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+              
+                    </>
+                  }
 
                 
              
         
         </div>
       </div>
-      <div className='glassEffect tb:w-[81.5%] w-[100%] tb:mt-[-35%]  mt-3 md:mt-[-40%]    
+      <div className='glassEffect tb:w-[81.5%] w-[100%] tb:mt-[-35%]  mt-3 md:mt-[-40%]  
            lg:mt-3 lg:ml-5  tb:h-100 lg:w-[25%]  h-120 lg:h-144 lg:mb-1 rounded-2xl p-4'>
         <div className='flex flex-row gap-2 justify-between items-center'>
           <h4 className='text-white font-semibold'>Hourly forecast</h4>
@@ -82,8 +96,8 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
             <ListItems hundleFunction={SelectType} label='Sunday' currentValue={state.weekDay} value='Sunday' ReduceType='WEEKDAY' isIcon={false} />
           </DropContainer>
         </div>
-       
-{/*               
+        <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
+              
               
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
@@ -91,24 +105,7 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
         <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
-        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div> */}
-
-
-         <div className='mt-2.5 overflow-y-scroll h-120'>
-           {
-                    data !== null ? filterbyDay?.map((data1) => (
-                           <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12  rounded-[5px] glassEffect  my-5' type={2} data={data1} />
-                    )) : <>
-                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3} />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                    </>
-                  }
-         </div>
+        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
       </div>
     </section>
   )
