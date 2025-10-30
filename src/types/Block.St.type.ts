@@ -9,5 +9,6 @@
 
 export type BlockStyle = {
     Data: formateData  | null | undefined, 
-    icon: string, classInLine: string
+    icon?: string,
+ classInLine: string
 }

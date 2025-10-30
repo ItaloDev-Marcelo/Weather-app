@@ -1,21 +1,24 @@
 import type { BlockStyle } from "../../types/Block.St.type"
+import { selectWeatherIcon } from "../data/WeatherIcons"
 
 
-const BlockStyle02 = ({Data, icon, classInLine}:BlockStyle) => {
+const BlockStyle02 = ({Data, classInLine}:BlockStyle) => {
 
-
+  
 
   return (
      <div className={classInLine}>
-       <div className="flex flex-row justify-between w-full  gap-2 bg-green-300">
-        <div className='flex flex-row justify-between items-center bg-red-400 px-2'>
-          <div>
-              <img src={icon} alt=''/>
+       <div className="flex flex-row text-white justify-between w-full  gap-2 px-2">
+        <div className='flex flex-row justify-between items-center  px-2'>
+          <div className="flex flex-row">
+            {
+              Data && <figure><img src={selectWeatherIcon(Data.weathercode)} alt='' className='w-7 mr-1'/></figure>
+            }
             <h5>{Data?.time} {Data && Data?.time > '12' ? 'PM' : 'AM' } </h5>
           </div>
        
         </div>
-          <p>{Data?.temperature}°</p>
+          <p className='text-[1.1rem]'>{Data?.temperature}°</p>
        </div>
      </div>
   )
