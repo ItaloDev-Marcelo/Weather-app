@@ -10,3 +10,5 @@ export const WeatherIconsList:WeatherIconsType = {
         Storm: '../../assets/images/storm.webp',
         Sunny: '../../assets/images/sunny.webp'
 }
+
+
