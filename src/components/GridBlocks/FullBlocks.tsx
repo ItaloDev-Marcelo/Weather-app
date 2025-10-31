@@ -6,12 +6,22 @@ import {EmpatyBlocks}  from './EmpatyBlocks';
 
  type formateData = {
       time : string,
-     temperature: number
+     temperature: number,
      weathercode: number
   }
 
 
-  type FullBlocksProps = {classInLine: string, type: number,data?: formateData   | null | undefined }
+  type formateData2 = {
+     dt: string,
+     min: number,
+     max: number,
+     weathercode: number
+  }
+
+
+  type UnicType = formateData | formateData2
+
+  type FullBlocksProps = {classInLine: string, type: number, data?: UnicType | null | undefined  }
 
 const FullBlocks = ({classInLine, type, data}:FullBlocksProps) => {
    
@@ -19,9 +29,9 @@ const FullBlocks = ({classInLine, type, data}:FullBlocksProps) => {
    const SelectGridSt = (t: number) => {
        switch(t) {
             case 1:
-            return <BlockStyle01 classInLine={classInLine} icon={''} Data={data} />
+            return <BlockStyle01 classInLine={classInLine}  Data={data} />
              case 2:
-            return <BlockStyle02 classInLine={classInLine} icon={''}  Data={data}  />
+            return <BlockStyle02 classInLine={classInLine}  Data={data}  />
             case 3:
             return <EmpatyBlocks  classInLine={classInLine} />
        }

@@ -2,13 +2,12 @@
 
  type formateData = {
       time : string,
-     temperature: number
+     temperature: number,
      weathercode: number
   }
 
 
 export type BlockStyle = {
     Data: formateData  | null | undefined, 
-    icon?: string,
  classInLine: string
 }

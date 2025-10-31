@@ -15,11 +15,20 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
     weathercode: data.hourly.weathercode[i]
   }))
 
-    
+    const ConvertData = data && data.daily.time.map((dt, index) => ({
+    dt,
+    max: data.daily.temperature_2m_max[index],
+    min: data.daily.temperature_2m_min[index],
+    weathercode: data.daily.weathercode[index]
+  }))
+
 
   const filterbyDay = FormateData?.filter(item => item.day.startsWith(today))
 
- 
+  console.log(FormateData)
+  console.log(ConvertData)
+
+
 
 
   return (
@@ -59,8 +68,20 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
 
         <div className='grid grid-cols-3 md:grid-cols-7  grid-rows-3 lg:grid-cols-7 lg:grid-rows-1 gap-3 lg:gap-2.5'>
                 
-
-
+            
+           {
+                    data !== null ? ConvertData?.map((data2) => (
+                    <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={1} data={data2} />
+                    )) : <>
+                  <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3} />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                    </>
+                  }
                 
 
                 
@@ -85,13 +106,11 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
        
 {/*               
               
-        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
-        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
-        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
-        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
-        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
-        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div>
-        <div className='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5'></div> */}
+        <div className='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect
+'></div>
+
+ <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+*/}
 
 
          <div className='mt-2.5 overflow-y-scroll h-120'>
