@@ -1,17 +1,8 @@
 
+import type { Block01 } from "../../types/Block.St.type"
 import { selectWeatherIcon } from "../data/WeatherIcons"
 
-
-  type formateData2 = {
-     dt: string,
-     min: number,
-     max: number,
-     weathercode: number
-  }
-
-  type PropsData2 = {classInLine: string, Data?:  formateData2 | null | undefined  }
-
-const BlockStyle01 = ({Data, classInLine}:PropsData2) => {
+const BlockStyle01 = ({Data, classInLine}:Block01) => {
 
 
   return (

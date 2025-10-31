@@ -1,10 +1,7 @@
-import type { BlockStyle } from "../../types/Block.St.type"
+import type { Block02} from "../../types/Block.St.type"
 import { selectWeatherIcon } from "../data/WeatherIcons"
 
-
-const BlockStyle02 = ({Data, classInLine}:BlockStyle) => {
-
-  
+const BlockStyle02 = ({Data, classInLine}:Block02) => {
 
   return (
      <div className={classInLine}>
