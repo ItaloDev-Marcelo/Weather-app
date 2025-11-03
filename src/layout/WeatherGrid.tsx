@@ -1,7 +1,6 @@
 import { PulseLoader } from 'react-spinners'
 import DropContainer from '../components/drop/DropContainer';
 import ListItems from '../components/drop/Drop-items/ListItems';
-// import type { WeatherApiResponse } from '../types/Api.type';
 import FullBlocks from '../components/GridBlocks/FullBlocks';
 import type { CommunType } from '../types/ComumReduce.type';
 const WeatherGrid = ({SelectType, state, data}:CommunType) => {
@@ -25,8 +24,6 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
 
   const filterbyDay = FormateData?.filter(item => item.day.startsWith(today))
 
-  console.log(FormateData)
-  console.log(ConvertData)
 
 
 
@@ -65,10 +62,7 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
         </div>
 
         <h4 className='text-white font-bold'>Daily forecast</h4>
-
         <div className='grid grid-cols-3 md:grid-cols-7  grid-rows-3 lg:grid-cols-7 lg:grid-rows-1 gap-3 lg:gap-2.5'>
-                
-            
            {
                     data !== null ? ConvertData?.map((data2) => (
                     <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={1} data={data2} />
@@ -82,11 +76,6 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
                  <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
                     </>
                   }
-                
-
-                
-             
-        
         </div>
       </div>
       <div className='glassEffect tb:w-[81.5%] w-[100%] tb:mt-[-35%]  mt-3 md:mt-[-40%]    
@@ -103,16 +92,6 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
             <ListItems hundleFunction={SelectType} label='Sunday' currentValue={state.weekDay} value='Sunday' ReduceType='WEEKDAY' isIcon={false} />
           </DropContainer>
         </div>
-       
-{/*               
-              
-        <div className='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect
-'></div>
-
- <FullBlocks classInLine='glassEffect  w-24 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
-*/}
-
-
          <div className='mt-2.5 overflow-y-scroll h-120'>
            {
                     data !== null ? filterbyDay?.map((data1) => (

@@ -7,9 +7,6 @@ import { useCallback, useEffect, useReducer, useState } from 'react'
 import {reduceData, initialState} from './hook/UseReducer'
 import type { TypeActionData } from './types/Reduce.type';
 
-// import BlockStyle02 from './components/GridBlocks/BlockStyle02';
-// import BlockStyle01 from './components/GridBlocks/BlockStyle01';
-
 function App() {
 
   const [city, setCity] = useState('Salvador')
@@ -82,9 +79,6 @@ function App() {
      {error || apiData === undefined  ? <Error reset={reset}/> : <Form searchInput={searchInput}  handleChange={handleChange} />}
      {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
      <WeatherGrid  state={state} SelectType={SelectType} data={apiData} />
-
-     {/* {apiData && <BlockStyle02 Data={apiData} icon={''} classInLine={''} />} */}
-     {/* {apiData && <BlockStyle01 Data={apiData} icon={''} classInLine={''} />} */}
     </div>
   )
 }

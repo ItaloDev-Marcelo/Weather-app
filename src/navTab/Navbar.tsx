@@ -26,8 +26,6 @@ const Navbar = ({ SelectType, state }: CommunType) => {
           ReduceType='PRECIPITATION' currentValue={state.precipitation} value="mm" isIcon={true} />
         <ListItems hundleFunction={SelectType} label="Inches (in)"
           ReduceType='PRECIPITATION' currentValue={state.precipitation} value="in" isIcon={true} />
-
-
       </DropContainer>
     </nav>
   )
