@@ -1,12 +1,12 @@
 import { PulseLoader } from 'react-spinners'
 import DropContainer from '../components/drop/DropContainer';
-import ListItems from '../components/drop/Drop-items/ListItems';
+import ListV2 from '../components/drop/Drop-items/ListItemV2';
 import FullBlocks from '../components/GridBlocks/FullBlocks';
 import type { CommunType } from '../types/ComumReduce.type';
 import { useState } from 'react';
 const WeatherGrid = ({SelectType, state, data}:CommunType) => {
 
-    // const today = new Date().toISOString().split('T')[0]; 
+    const today = new Date().toISOString().split('T')[0]; 
     
 
     const FormateData = data && data.hourly.time.map((t, i) => ({
@@ -26,9 +26,9 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
 
 
   const ChangeTitle = (titleLabel:string) =>  setTitle(titleLabel)
+  const filterbyDay = FormateData?.filter(item => state.weekDay !== '—' ? item.day.startsWith(state.weekDay) : item.day.startsWith(today) )
 
-  const filterbyDay = FormateData?.filter(item => item.day.startsWith(state.weekDay))
-
+ 
 
 
 const [title, setTitle] = useState('Monday')
@@ -46,23 +46,19 @@ const [title, setTitle] = useState('Monday')
         <div className='grid grid-cols-2 md:auto-cols-max md:grid-flow-col  gap-2   grid-row-2 lg:grid-cols-4 lg:gap-5 mt-2.5'>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25  rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Feels Like</h3> <br />
-            <p>—</p>
-            <img src='' alt='' />
+            {!data ? <p>—</p> : <p>{data.current.apparent_temperature} °</p> }
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Humidity</h3> <br />
-            <p>—</p>
-            <img src='' alt='' />
+           {!data ? <p>—</p> : <p>{data.current.relative_humidity_2m} %</p> }
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Wind</h3> <br />
-            <p>—</p>
-            <img src='' alt='' />
+               {!data ? <p>—</p> : <p>{data.current.wind_speed_10m} {state.windSpeed}</p> }
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Precipitation</h3> <br />
-            <p>—</p>
-            <img src='' alt='' />
+               {!data ? <p>—</p> : <p>{data.current.precipitation} {state.precipitation} </p> }
           </div>
         </div>
 
@@ -87,19 +83,18 @@ const [title, setTitle] = useState('Monday')
            lg:mt-3 lg:ml-5  tb:h-100 lg:w-[25%]  h-120 lg:h-144 lg:mb-1 rounded-2xl p-4'>
         <div className='flex flex-row gap-2 justify-between items-center'>
           <h4 className='text-white font-semibold'>Hourly forecast</h4>
-          <DropContainer icon1={false} icon2={true} name={title} >
-
-            <ListItems hundleFunction={SelectType} 
+          <DropContainer icon1={false} icon2={true} name={ConvertData ? title : '—' } >
+            <ListV2 hundleFunction={SelectType} 
             ChangeTitle={ChangeTitle}
             label='Monday' currentValue={state.weekDay} 
             value={ConvertData && ConvertData[0].dt ? ConvertData[0].dt : '' }
              ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Tuesday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[1].dt ? ConvertData[1].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Wednesday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[2].dt ? ConvertData[2].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Thursday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[3].dt ? ConvertData[3].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='friday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[4].dt ? ConvertData[4].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Saturday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[5].dt ? ConvertData[5].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Sunday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[6].dt ? ConvertData[6].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListV2 hundleFunction={SelectType} label='Tuesday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[1].dt ? ConvertData[1].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListV2 hundleFunction={SelectType} label='Wednesday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[2].dt ? ConvertData[2].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListV2 hundleFunction={SelectType} label='Thursday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[3].dt ? ConvertData[3].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListV2 hundleFunction={SelectType} label='friday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[4].dt ? ConvertData[4].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListV2 hundleFunction={SelectType} label='Saturday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[5].dt ? ConvertData[5].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListV2 hundleFunction={SelectType} label='Sunday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[6].dt ? ConvertData[6].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
           </DropContainer>
         </div>
          <div className='mt-2.5 overflow-y-scroll h-120'>

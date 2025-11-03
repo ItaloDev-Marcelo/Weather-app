@@ -1,14 +1,12 @@
 import checkIcon from '../../../assets/images/icon-checkmark.svg';
-import type { ListProps } from '../../../types/List.item.type';
+import type {ListV1 } from '../../../types/List.item.type';
 
 const ListItems = ({hundleFunction, label, currentValue, value, isIcon,
-  ReduceType, ChangeTitle
-}:ListProps ) => {
-
-
-
+  ReduceType
+}:ListV1 ) => {
+    
   return (
-     <li onClick={() => ChangeTitle(label)} ><button className={currentValue === value ? 'bg-[#3d3b5eff] rounded-[5px]': ''} 
+     <li ><button className={currentValue === value ? 'bg-[#3d3b5eff] rounded-[5px]': ''} 
      onClick={() => hundleFunction(ReduceType, value)}>{label} 
      {currentValue === value && isIcon ? <img src={checkIcon} alt='' />
       : null}  </button></li>
