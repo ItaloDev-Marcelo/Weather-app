@@ -24,6 +24,7 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
 
   const filterbyDay = FormateData?.filter(item => item.day.startsWith(today))
 
+  console.log(ConvertData)
 
 
 
