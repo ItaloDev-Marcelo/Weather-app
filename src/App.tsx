@@ -54,7 +54,6 @@ function App() {
     SearchByName(city)
   }, [SearchByName, city])
 
-  console.log(apiData)
 
   
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -71,7 +70,7 @@ function App() {
   }
 
 
-
+console.log(apiData)
   
   return (
     <div>

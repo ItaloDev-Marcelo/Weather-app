@@ -3,9 +3,11 @@ import DropContainer from '../components/drop/DropContainer';
 import ListItems from '../components/drop/Drop-items/ListItems';
 import FullBlocks from '../components/GridBlocks/FullBlocks';
 import type { CommunType } from '../types/ComumReduce.type';
+import { useState } from 'react';
 const WeatherGrid = ({SelectType, state, data}:CommunType) => {
 
-    const today = new Date().toISOString().split('T')[0]; 
+    // const today = new Date().toISOString().split('T')[0]; 
+    
 
     const FormateData = data && data.hourly.time.map((t, i) => ({
     day: t.slice(0,10),
@@ -14,6 +16,7 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
     weathercode: data.hourly.weathercode[i]
   }))
 
+    
     const ConvertData = data && data.daily.time.map((dt, index) => ({
     dt,
     max: data.daily.temperature_2m_max[index],
@@ -22,12 +25,13 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
   }))
 
 
-  const filterbyDay = FormateData?.filter(item => item.day.startsWith(today))
+  const ChangeTitle = (titleLabel:string) =>  setTitle(titleLabel)
 
-  console.log(ConvertData)
+  const filterbyDay = FormateData?.filter(item => item.day.startsWith(state.weekDay))
 
 
 
+const [title, setTitle] = useState('Monday')
 
   return (
     <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 jusify-center'>
@@ -83,14 +87,19 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
            lg:mt-3 lg:ml-5  tb:h-100 lg:w-[25%]  h-120 lg:h-144 lg:mb-1 rounded-2xl p-4'>
         <div className='flex flex-row gap-2 justify-between items-center'>
           <h4 className='text-white font-semibold'>Hourly forecast</h4>
-          <DropContainer icon1={false} icon2={true} name={state.weekDay}>
-            <ListItems hundleFunction={SelectType} label='Monday' currentValue={state.weekDay} value='Monday' ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Tuesday' currentValue={state.weekDay} value='Tuesday' ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Wednesday' currentValue={state.weekDay} value='Wednesday' ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Thursday' currentValue={state.weekDay} value='Thursday' ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='friday' currentValue={state.weekDay} value='friday' ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Saturday' currentValue={state.weekDay} value='Saturday' ReduceType='WEEKDAY' isIcon={false} />
-            <ListItems hundleFunction={SelectType} label='Sunday' currentValue={state.weekDay} value='Sunday' ReduceType='WEEKDAY' isIcon={false} />
+          <DropContainer icon1={false} icon2={true} name={title} >
+
+            <ListItems hundleFunction={SelectType} 
+            ChangeTitle={ChangeTitle}
+            label='Monday' currentValue={state.weekDay} 
+            value={ConvertData && ConvertData[0].dt ? ConvertData[0].dt : '' }
+             ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Tuesday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[1].dt ? ConvertData[1].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Wednesday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[2].dt ? ConvertData[2].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Thursday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[3].dt ? ConvertData[3].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='friday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[4].dt ? ConvertData[4].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Saturday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[5].dt ? ConvertData[5].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListItems hundleFunction={SelectType} label='Sunday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[6].dt ? ConvertData[6].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
           </DropContainer>
         </div>
          <div className='mt-2.5 overflow-y-scroll h-120'>
@@ -98,7 +107,7 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
                     data !== null ? filterbyDay?.map((data1) => (
                            <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12  rounded-[5px] glassEffect  my-5' type={2} data={data1} />
                     )) : <>
-                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
+                 <FullBlocks classInLine='glassEffect w-[100%]  h-12  rounded-[5px] glassEffect   my-5' type={3}  />
                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3} />
