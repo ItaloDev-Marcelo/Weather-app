@@ -8,7 +8,6 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
 
     const today = new Date().toISOString().split('T')[0]; 
     
-
     const FormateData = data && data.hourly.time.map((t, i) => ({
     day: t.slice(0,10),
     time: t.slice(11,13),
@@ -16,14 +15,12 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
     weathercode: data.hourly.weathercode[i]
   }))
 
-    
     const ConvertData = data && data.daily.time.map((dt, index) => ({
     dt,
     max: data.daily.temperature_2m_max[index],
     min: data.daily.temperature_2m_min[index],
     weathercode: data.daily.weathercode[index]
   }))
-
 
   const ChangeTitle = (titleLabel:string) =>  setTitle(titleLabel)
   const filterbyDay = FormateData?.filter(item => state.weekDay !== '—' ? item.day.startsWith(state.weekDay) : item.day.startsWith(today) )
@@ -36,10 +33,11 @@ const [title, setTitle] = useState('Monday')
   return (
     <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 jusify-center'>
       <div className='flex flex-col  gap-2.5 tb-gap-3 lg:gap-5'>
-        <div className='glassEffect  w-[100%] h-50 tb:h-55 rounded-2xl'>
-          <div className='flex flex-col items-center justify-center mt-23'>
-            <PulseLoader size={10} color='#fff' />
-            <p className='text-white text-[1.2em] mt-2'>Loading...</p>
+        <div className={!data ? 'glassEffect  w-[100%] h-50 tb:h-55 rounded-2xl' : '  w-[100%] h-50 tb:h-55 rounded-2xl banner '}>
+          <div className='flex flex-col items-center justify-center mt-23 '>
+            {!data && <div>
+              <PulseLoader size={10} color='#fff' />
+            <p className='text-white text-[1.2em] mt-2'>Loading...</p></div>}
           </div>
 
         </div>
@@ -79,7 +77,7 @@ const [title, setTitle] = useState('Monday')
                   }
         </div>
       </div>
-      <div className='glassEffect tb:w-[81.5%] w-[100%] tb:mt-[-35%]  mt-3 md:mt-[-40%]    
+      <div className='glassEffect tb:w-[81.5%] w-[100%] tb:mt-[-35%]  mt-3 md:mt-[-40%] 
            lg:mt-3 lg:ml-5  tb:h-100 lg:w-[25%]  h-120 lg:h-144 lg:mb-1 rounded-2xl p-4'>
         <div className='flex flex-row gap-2 justify-between items-center'>
           <h4 className='text-white font-semibold'>Hourly forecast</h4>
@@ -92,7 +90,7 @@ const [title, setTitle] = useState('Monday')
             <ListV2 hundleFunction={SelectType} label='Tuesday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[1].dt ? ConvertData[1].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
             <ListV2 hundleFunction={SelectType} label='Wednesday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[2].dt ? ConvertData[2].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
             <ListV2 hundleFunction={SelectType} label='Thursday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[3].dt ? ConvertData[3].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
-            <ListV2 hundleFunction={SelectType} label='friday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[4].dt ? ConvertData[4].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
+            <ListV2 hundleFunction={SelectType} label='Friday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[4].dt ? ConvertData[4].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
             <ListV2 hundleFunction={SelectType} label='Saturday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[5].dt ? ConvertData[5].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
             <ListV2 hundleFunction={SelectType} label='Sunday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[6].dt ? ConvertData[6].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
           </DropContainer>
@@ -100,15 +98,15 @@ const [title, setTitle] = useState('Monday')
          <div className='mt-2.5 overflow-y-scroll h-120'>
            {
                     data !== null ? filterbyDay?.map((data1) => (
-                           <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12  rounded-[5px] glassEffect  my-5' type={2} data={data1} />
+                           <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12  rounded-[5px] glassEffect  my-4.5' type={2} data={data1} />
                     )) : <>
-                 <FullBlocks classInLine='glassEffect w-[100%]  h-12  rounded-[5px] glassEffect   my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3} />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-5' type={3}  />
+                 <FullBlocks classInLine='glassEffect w-[100%]  h-12  rounded-[5px] glassEffect   my-1.5 md:my-2.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3} />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
                     </>
                   }
          </div>

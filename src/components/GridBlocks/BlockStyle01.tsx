@@ -6,9 +6,9 @@ const BlockStyle01 = ({Data, classInLine}:Block01) => {
   return (
        <div className={classInLine}>
           <div className="flex flex-col items-center justify-center gap-1 text-white ">
-        <div className="text-center flex flex-col items-center justify-center mt-5">
+        <div className="text-center flex flex-col items-center justify-center mt-2.5 md:mt-5">
           <h5>{Data && UseGetDay(Data?.dt)}</h5>
-          {Data && <img src={selectWeatherIcon(Data.weathercode)} className='w-10 my-2' alt=''/>}
+          {Data && <img src={selectWeatherIcon(Data.weathercode)} className='w-10 my-1 md:my-2' alt=''/>}
        </div>
 
        <div className="flex flex-row justify-between gap-1.5 mt-4">
