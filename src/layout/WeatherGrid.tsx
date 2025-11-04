@@ -1,12 +1,14 @@
 import { PulseLoader } from 'react-spinners'
 import DropContainer from '../components/drop/DropContainer';
 import ListV2 from '../components/drop/Drop-items/ListItemV2';
+import {selectWeatherIcon} from '../components/data/WeatherIcons'
 import FullBlocks from '../components/GridBlocks/FullBlocks';
 import type { CommunType } from '../types/ComumReduce.type';
 import { useState } from 'react';
-const WeatherGrid = ({SelectType, state, data}:CommunType) => {
+const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
 
     const today = new Date().toISOString().split('T')[0]; 
+    const currentDate = new Date()
     
     const FormateData = data && data.hourly.time.map((t, i) => ({
     day: t.slice(0,10),
@@ -26,6 +28,34 @@ const WeatherGrid = ({SelectType, state, data}:CommunType) => {
   const filterbyDay = FormateData?.filter(item => state.weekDay !== '—' ? item.day.startsWith(state.weekDay) : item.day.startsWith(today) )
 
  
+  const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+  ]
+
+
+  const days = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+   ]
+
+  const selectMoth = (month:number) => months[month]
+  const selectDay = (day:number) => days[day]
 
 
 const [title, setTitle] = useState('Monday')
@@ -33,11 +63,25 @@ const [title, setTitle] = useState('Monday')
   return (
     <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 jusify-center'>
       <div className='flex flex-col  gap-2.5 tb-gap-3 lg:gap-5'>
-        <div className={!data ? 'glassEffect  w-[100%] h-50 tb:h-55 rounded-2xl' : '  w-[100%] h-50 tb:h-55 rounded-2xl banner '}>
+        <div className={!data ? 'glassEffect  w-[100%] h-50 tb:h-55 rounded-2xl' : ' w-[100%] h-50 tb:h-55 rounded-2xl banner '}>
           <div className='flex flex-col items-center justify-center mt-23 '>
             {!data && <div>
               <PulseLoader size={10} color='#fff' />
             <p className='text-white text-[1.2em] mt-2'>Loading...</p></div>}
+
+            {data && <div className='flex flex-row justify-between items-center w-full mt-[-2em] px-4'>
+              <div className='text-white'>
+                <h4 className='text-[2em] font-bold'>{country}, {city}</h4>
+                <p className='text-[2em] font-bold'>{`${ selectDay(currentDate.getDate())},   ${selectMoth(currentDate.getMonth())} ${currentDate.getDate()},  ${currentDate.getFullYear()}`} </p>
+              </div>
+
+              <div className='flex flex-row items-center font-bold text-white'>
+                <img src={selectWeatherIcon(data.daily.weathercode[0])} className='w-20' alt=''/>
+                <p className='text-[4em]'>{data.current.temperature_2m}</p>
+              </div>
+              
+            </div>}
+
           </div>
 
         </div>
