@@ -5,10 +5,12 @@ import {selectWeatherIcon} from '../components/data/WeatherIcons'
 import FullBlocks from '../components/GridBlocks/FullBlocks';
 import type { CommunType } from '../types/ComumReduce.type';
 import { useState } from 'react';
+import UseGetDay from '../hook/UseGetDay';
 const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
 
     const today = new Date().toISOString().split('T')[0]; 
     const currentDate = new Date()
+
     
     const FormateData = data && data.hourly.time.map((t, i) => ({
     day: t.slice(0,10),
@@ -23,6 +25,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
     min: data.daily.temperature_2m_min[index],
     weathercode: data.daily.weathercode[index]
   }))
+
 
   const ChangeTitle = (titleLabel:string) =>  setTitle(titleLabel)
   const filterbyDay = FormateData?.filter(item => state.weekDay !== '—' ? item.day.startsWith(state.weekDay) : item.day.startsWith(today) )
@@ -44,18 +47,11 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
   ]
 
 
-  const days = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday'
-   ]
+  console.log(data)
+
 
   const selectMoth = (month:number) => months[month]
-  const selectDay = (day:number) => days[day]
+
 
 
 const [title, setTitle] = useState('Monday')
@@ -72,7 +68,8 @@ const [title, setTitle] = useState('Monday')
             {data && <div className='flex flex-row justify-between items-center w-full mt-[-2em] px-4'>
               <div className='text-white'>
                 <h4 className='text-[2em] font-bold'>{country}, {city}</h4>
-                <p className='text-[2em] font-bold'>{`${ selectDay(currentDate.getDate())},   ${selectMoth(currentDate.getMonth())} ${currentDate.getDate()},  ${currentDate.getFullYear()}`} </p>
+                <p className='text-[2em] font-bold'>{`${ ConvertData && UseGetDay(ConvertData[0].dt, 2)} ,   
+                ${selectMoth(currentDate.getMonth())} ${currentDate.getDate()},  ${currentDate.getFullYear()}`} </p>
               </div>
 
               <div className='flex flex-row items-center font-bold text-white'>
