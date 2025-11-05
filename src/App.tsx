@@ -9,7 +9,7 @@ import type { TypeActionData } from './types/Reduce.type';
 
 function App() {
 
-  const [city, setCity] = useState('Salvador')
+  const [city, setCity] = useState('')
   const [country, setCountry] = useState('')
   const [search, setSearch] = useState('')
   const [error, setError] = useState(false)
@@ -73,7 +73,6 @@ function App() {
     setCity('salvador')
   }
 
-  console.log(apiData)
 
   
   return (

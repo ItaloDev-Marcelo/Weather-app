@@ -144,13 +144,15 @@ const [title, setTitle] = useState('Monday')
                     data !== null ? filterbyDay?.map((data1) => (
                            <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12  rounded-[5px] glassEffect  my-4.5' type={2} data={data1} />
                     )) : <>
-                 <FullBlocks classInLine='glassEffect w-[100%]  h-12  rounded-[5px] glassEffect   my-1.5 md:my-2.5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3} />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-2.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect w-[100%]  h-12  rounded-[5px] glassEffect   my-1.5 md:my-4.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3} />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />
+                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />
                     </>
                   }
          </div>
