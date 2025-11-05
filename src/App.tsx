@@ -14,6 +14,7 @@ function App() {
   const [search, setSearch] = useState('')
   const [error, setError] = useState(false)
   const [userNotFound, setUserNotFound] = useState(false)
+  const [showTime, setShowTime] = useState(false)
   const [apiData,setApiData] = useState<WeatherApiResponse | null>(null);
   const [state, dispatch] = useReducer(reduceData, initialState)
 
@@ -45,11 +46,15 @@ function App() {
       const climaResult = await dadosDoClima.json();
         setUserNotFound(false)
         setError(false)
-        setApiData(climaResult);
+        setShowTime(true)
+        setTimeout(() => {
+            setApiData(climaResult);
+        }, 5000)
     
     } catch (err) {
       console.error(err);
          setError(true)
+         setShowTime(false)
     }
   }, []
 )
@@ -80,7 +85,7 @@ function App() {
     <Navbar state={state} SelectType={SelectType} />
      {error || apiData === undefined  ? <Error reset={reset}/> : <Form searchInput={searchInput}  handleChange={handleChange} />}
      {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
-     <WeatherGrid  state={state} SelectType={SelectType} data={apiData} city={city} country={country} />
+     {showTime && <WeatherGrid  state={state} SelectType={SelectType} data={apiData} city={city} country={country} />}
     </div>
   )
 }

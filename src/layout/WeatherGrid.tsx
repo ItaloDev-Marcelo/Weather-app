@@ -46,13 +46,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
   "Dec"
   ]
 
-
-  console.log(data)
-
-
   const selectMoth = (month:number) => months[month]
-
-
 
 const [title, setTitle] = useState('Monday')
 
@@ -60,21 +54,21 @@ const [title, setTitle] = useState('Monday')
     <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 jusify-center'>
       <div className='flex flex-col  gap-2.5 tb-gap-3 lg:gap-5'>
         <div className={!data ? 'glassEffect  w-[100%] h-50 tb:h-55 rounded-2xl' : ' w-[100%] h-50 tb:h-55 rounded-2xl banner '}>
-          <div className='flex flex-col items-center justify-center mt-23 '>
+          <div className='flex flex-col items-center text-center xl:text-left justify-center mt-23 '>
             {!data && <div>
               <PulseLoader size={10} color='#fff' />
             <p className='text-white text-[1.2em] mt-2'>Loading...</p></div>}
 
-            {data && <div className='flex flex-row justify-between items-center w-full mt-[-2em] px-4'>
+            {data && <div className='flex flex-col md:flex-row  justify-between items-center w-full mt-[-1em] mt-[-2em] px-4'>
               <div className='text-white'>
-                <h4 className='text-[2em] font-bold'>{country}, {city}</h4>
-                <p className='text-[2em] font-bold'>{`${ ConvertData && UseGetDay(ConvertData[0].dt, 2)} ,   
+                <h4 className='text-[1.5em] xl:text-[1.2em] font-bold'>{country}, {city}</h4>
+                <p className='text-[1.5em] xl:text-[1.2em]  font-bold'>{`${ ConvertData && UseGetDay(ConvertData[0].dt, 2)} ,   
                 ${selectMoth(currentDate.getMonth())} ${currentDate.getDate()},  ${currentDate.getFullYear()}`} </p>
               </div>
 
-              <div className='flex flex-row items-center font-bold text-white'>
-                <img src={selectWeatherIcon(data.daily.weathercode[0])} className='w-20' alt=''/>
-                <p className='text-[4em]'>{data.current.temperature_2m}</p>
+              <div className='flex flex-row  items-center font-bold text-white'>
+                <img src={selectWeatherIcon(1)} className=' w-13 md:w-20' alt=''/>
+                <p className='text-[2em] xl:text-[4em] '>{data.current.temperature_2m}°</p>
               </div>
               
             </div>}
@@ -85,19 +79,19 @@ const [title, setTitle] = useState('Monday')
         <div className='grid grid-cols-2 md:auto-cols-max md:grid-flow-col  gap-2   grid-row-2 lg:grid-cols-4 lg:gap-5 mt-2.5'>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25  rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Feels Like</h3> <br />
-            {!data ? <p>—</p> : <p>{data.current.apparent_temperature} °</p> }
+            {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{data.current.apparent_temperature} °</p> }
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Humidity</h3> <br />
-           {!data ? <p>—</p> : <p>{data.current.relative_humidity_2m} %</p> }
+           {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{data.current.relative_humidity_2m} %</p> }
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Wind</h3> <br />
-               {!data ? <p>—</p> : <p>{data.current.wind_speed_10m} {state.windSpeed}</p> }
+               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{data.current.wind_speed_10m} {state.windSpeed}</p> }
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Precipitation</h3> <br />
-               {!data ? <p>—</p> : <p>{data.current.precipitation} {state.precipitation} </p> }
+               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{data.current.precipitation} {state.precipitation} </p> }
           </div>
         </div>
 
@@ -136,7 +130,7 @@ const [title, setTitle] = useState('Monday')
             <ListV2 hundleFunction={SelectType} label='Sunday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[6].dt ? ConvertData[6].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
           </DropContainer>
         </div>
-         <div className='mt-2.5 overflow-y-scroll h-120'>
+         <div className='mt-2.5 overflow-y-scroll  h-100 md:h-115 xl:h-120'>
            {
                     data !== null ? filterbyDay?.map((data1) => (
                            <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12  rounded-[5px] glassEffect  my-4.5' type={2} data={data1} />
