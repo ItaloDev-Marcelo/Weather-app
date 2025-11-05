@@ -10,6 +10,24 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
 
     const today = new Date().toISOString().split('T')[0]; 
     const currentDate = new Date()
+    const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+  ]
+
+  const selectMoth = (month:number) => months[month]
+
+  const [title, setTitle] = useState('Monday')
 
     
     const FormateData = data && data.hourly.time.map((t, i) => ({
@@ -28,27 +46,12 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
 
 
   const ChangeTitle = (titleLabel:string) =>  setTitle(titleLabel)
-  const filterbyDay = FormateData?.filter(item => state.weekDay !== '—' ? item.day.startsWith(state.weekDay) : item.day.startsWith(today) )
+  const filterbyDay = FormateData?.filter(item => state.weekDay !== '—' ?
+  item.day.startsWith(state.weekDay) :
+  item.day.startsWith(today) )
 
  
-  const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
-  ]
 
-  const selectMoth = (month:number) => months[month]
-
-const [title, setTitle] = useState('Monday')
 
   return (
     <section className='flex flex-col lg:flex-row items-start md:items-center p-4 lg:p-10 jusify-center'>
