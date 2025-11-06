@@ -8,6 +8,24 @@ import { useState } from 'react';
 import UseGetDay from '../hook/UseGetDay';
 const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
 
+
+  const UseTemp = (valor : number, name: string) => {
+    const result1 = valor;
+    const result2 =  (valor * 9) / 5 + 32
+      return name === 'celsius' ? result1.toFixed(0) : result2.toFixed(0)
+  }
+  
+  
+  // const UseWind = (valor : number,name: string) => {
+  //   return name === 'km' ? valor : valor / 1.609
+  // }
+  
+  
+  //  const UsePrec = (valor : number,name: string) => {
+  //   return  name === 'mm' ? valor : valor / 25.4
+  // }
+  
+
     const today = new Date().toISOString().split('T')[0]; 
     const currentDate = new Date()
     const months = [
@@ -33,14 +51,14 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
     const FormateData = data && data.hourly.time.map((t, i) => ({
     day: t.slice(0,10),
     time: t.slice(11,13),
-    temperature: data.hourly.temperature_2m[i],
+    temperature: UseTemp(data.hourly.temperature_2m[i],state.temperature),
     weathercode: data.hourly.weathercode[i]
   }))
 
     const ConvertData = data && data.daily.time.map((dt, index) => ({
     dt,
-    max: data.daily.temperature_2m_max[index],
-    min: data.daily.temperature_2m_min[index],
+    max: Number(UseTemp(data.daily.temperature_2m_max[index],state.temperature)),
+    min: Number(UseTemp(data.daily.temperature_2m_min[index],state.temperature)),
     weathercode: data.daily.weathercode[index]
   }))
 
@@ -62,7 +80,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
               <PulseLoader size={10} color='#fff' />
             <p className='text-white text-[1.2em] mt-2'>Loading...</p></div>}
 
-            {data && <div className='flex flex-col md:flex-row  justify-between items-center w-full mt-[-1em] mt-[-2em] px-4'>
+            {data && <div className='flex flex-col md:flex-row  justify-between items-center w-full  mt-[-2em] px-4'>
               <div className='text-white'>
                 <h4 className='text-[1.5em] xl:text-[1.2em] font-bold'>{country}, {city}</h4>
                 <p className='text-[1.5em] xl:text-[1.2em]  font-bold'>{`${ ConvertData && UseGetDay(ConvertData[0].dt, 2)} ,   
@@ -71,7 +89,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
 
               <div className='flex flex-row  items-center font-bold text-white'>
                 <img src={selectWeatherIcon(1)} className=' w-13 md:w-20' alt=''/>
-                <p className='text-[2em] xl:text-[4em] '>{data.current.temperature_2m}°</p>
+                <p className='text-[2em] xl:text-[4em] '>{UseTemp(data.current.temperature_2m,state.temperature)}°</p>
               </div>
               
             </div>}
@@ -82,7 +100,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
         <div className='grid grid-cols-2 md:auto-cols-max md:grid-flow-col  gap-2   grid-row-2 lg:grid-cols-4 lg:gap-5 mt-2.5'>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25  rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Feels Like</h3> <br />
-            {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{data.current.apparent_temperature} °</p> }
+            {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{UseTemp(data.current.apparent_temperature, state.temperature)} °</p> }
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Humidity</h3> <br />
@@ -136,7 +154,9 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
          <div className='mt-2.5 overflow-y-scroll  h-100 md:h-115 xl:h-120'>
            {
                     data !== null ? filterbyDay?.map((data1) => (
-                           <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12  rounded-[5px] glassEffect  my-4.5' type={2} data={data1} />
+                           <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12  rounded-[5px] glassEffect  my-4.5'
+                            type={2}
+                            data={data1} />
                     )) : <>
                  <FullBlocks classInLine='glassEffect w-[100%]  h-12  rounded-[5px] glassEffect   my-1.5 md:my-4.5' type={3}  />
                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />

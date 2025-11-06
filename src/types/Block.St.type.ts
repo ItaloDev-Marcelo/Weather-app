@@ -1,33 +1,19 @@
-// import type { WeatherApiResponse } from "./Api.type"
- 
-// old
-
-
- type formateData = {
-      time : string,
-     temperature: number,
-     weathercode: number
-  }
-
-export type BlockStyle = {
- Data: formateData  | null | undefined, 
- classInLine: string
-}
-
 
 // new code 
 
+// import type { State } from "../hook/UseReducer"
+
 export type BlockSt01 = {
       time : string,
-     temperature: number,
+     temperature: number | string,
      weathercode: number
   }
 
 
 export type BlockSt02 = {
      dt: string,
-     min: number,
-     max: number,
+     min: number | string,
+     max: number | string,
      weathercode: number
   }
 
