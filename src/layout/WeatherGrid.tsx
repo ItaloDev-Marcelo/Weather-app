@@ -16,14 +16,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
   }
   
   
-  // const UseWind = (valor : number,name: string) => {
-  //   return name === 'km' ? valor : valor / 1.609
-  // }
   
-  
-  //  const UsePrec = (valor : number,name: string) => {
-  //   return  name === 'mm' ? valor : valor / 25.4
-  // }
   
 
     const today = new Date().toISOString().split('T')[0]; 
@@ -44,7 +37,6 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
   ]
 
   const selectMoth = (month:number) => months[month]
-
   const [title, setTitle] = useState('Monday')
 
     
@@ -62,13 +54,27 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
     weathercode: data.daily.weathercode[index]
   }))
 
+  const UseWind = (valor : number,name: string) => {
+    const result1 = valor;
+    const result2 = valor /1.609
+    return name === 'km/h' ? Number(result1.toFixed(2)) : Number(result2.toFixed(2))
+  }
+  
+
+   const UsePrec = (valor : number,name: string) => {
+    const result1 = valor 
+    const result2 = valor / 25.4
+    return  name === 'mm' ? Number(result1.toFixed(1)) : Number(result2.toFixed(1))
+  }
 
   const ChangeTitle = (titleLabel:string) =>  setTitle(titleLabel)
   const filterbyDay = FormateData?.filter(item => state.weekDay !== '—' ?
   item.day.startsWith(state.weekDay) :
   item.day.startsWith(today) )
+  
 
  
+
 
 
   return (
@@ -108,11 +114,11 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Wind</h3> <br />
-               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{data.current.wind_speed_10m} {state.windSpeed}</p> }
+               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'> {UseWind(data.current.wind_speed_10m, state.windSpeed)} {state.windSpeed}</p> }
           </div>
           <div className='  glassEffect  w-40 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Precipitation</h3> <br />
-               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{data.current.precipitation} {state.precipitation} </p> }
+               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'> {UsePrec(Number(data.current.precipitation), state.precipitation)} {state.precipitation}</p> }
           </div>
         </div>
 
