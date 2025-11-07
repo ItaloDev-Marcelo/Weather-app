@@ -1,14 +1,8 @@
-
-// new code 
-
-// import type { State } from "../hook/UseReducer"
-
 export type BlockSt01 = {
-      time : string,
+    time : string,
      temperature: number | string,
      weathercode: number
   }
-
 
 export type BlockSt02 = {
      dt: string,
@@ -16,8 +10,6 @@ export type BlockSt02 = {
      max: number | string,
      weathercode: number
   }
-
-
 
 export type Block01 = {
  Data?:  BlockSt02  | null | undefined, 
@@ -29,9 +21,6 @@ export type Block02 = {
  Data?: BlockSt01  | null | undefined, 
  classInLine: string
 }
-
-
-
 
 type UnicType = BlockSt01 | BlockSt02
 

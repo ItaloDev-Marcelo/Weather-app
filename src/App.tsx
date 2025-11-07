@@ -63,19 +63,12 @@ function App() {
     SearchByName(city)
   }, [SearchByName, city])
 
-
-  
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-     setSearch(event.target.value)
-  }
-
-  const searchInput = () => {
-    setCity(search)
-  } 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)
+  const searchInput = () => setCity(search)
 
   const reset = () => {
     setSearch('')
-    setCity('salvador')
+    setCity('')
   }
 
 

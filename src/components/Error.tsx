@@ -1,6 +1,5 @@
 import ReloadImage from '../assets/images/icon-retry.svg';
 import ErrorImg from '../assets/images/icon-error.svg'
-
 type ErrorProps = {reset: () => void}
 
 const Error = ({reset}:ErrorProps) => {

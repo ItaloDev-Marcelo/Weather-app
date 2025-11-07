@@ -1,6 +1,5 @@
 import checkIcon from '../../../assets/images/icon-checkmark.svg';
 import type {ListV2 } from '../../../types/List.item.type';
-
 const ListItem2 = ({hundleFunction, label, currentValue, value, isIcon,
   ReduceType, ChangeTitle
 }:ListV2 ) => {
