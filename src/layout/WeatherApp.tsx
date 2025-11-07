@@ -8,7 +8,7 @@ import {reduceData, initialState} from '../hook/UseReducer'
 import type { TypeActionData } from '../types/Reduce.type';
 
 
-const WatherApp = () => {
+const WeatherApp = () => {
 
   const [city, setCity] = useState('')
   const [country, setCountry] = useState('')
