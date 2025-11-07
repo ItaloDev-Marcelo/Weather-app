@@ -72,8 +72,6 @@ const WeatherApp = () => {
     setCity('')
   }
 
-
-  
   return (
     <div>
     <Navbar state={state} SelectType={SelectType} />
@@ -84,4 +82,4 @@ const WeatherApp = () => {
   )
 }
 
-export default WatherApp
+export default WeatherApp

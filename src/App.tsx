@@ -1,8 +1,7 @@
+import WeatherApp from "./layout/WeatherApp"
 
 function App() {
-
-  
-  return <Wa
+  return <WeatherApp/>
 }
 
 export default App
