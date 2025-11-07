@@ -9,3 +9,10 @@ export type ActionType = {
   type: TypeActionData;
   payload: string;
 };
+
+export type State = {
+  temperature: string
+  windSpeed: string
+  precipitation: string
+  weekDay: string
+};

@@ -1,10 +1,5 @@
-
-type FormProps = {
-    handleChange: (event:React.ChangeEvent<HTMLInputElement>) => void,
-    searchInput: () => void
-}
-
-const Form = ({handleChange,searchInput}:FormProps ) => {
+import type { FormProps } from "../types/Form.type"
+const Form = ({handleChange,searchInput}:FormProps) => {
   return (
     <div className='flex flex-col gap-3 m-2 items-center justify-center text-center '>
          <h1 className='font-bold my-5 text-5xl text-white md:text-3xl lg:text-4xl'>How's the <br className='md:hidden' /> sky looking <br className='md:hidden' /> today?</h1>

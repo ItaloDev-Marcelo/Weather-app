@@ -1,10 +1,5 @@
-import type { Action } from "../types/Reduce.type";
-export type State = {
-  temperature: string
-  windSpeed: string
-  precipitation: string
-  weekDay: string
-};
+
+import type { Action, State} from "../types/Reduce.type";
 
 const initialState = {temperature: 'celsius', windSpeed: 'km/h', precipitation: 'mm', weekDay: '—'};
 
