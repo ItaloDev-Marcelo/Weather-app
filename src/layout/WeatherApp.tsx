@@ -2,11 +2,10 @@ import Navbar from '../navTab/Navbar';
 import Error from '../components/Error';
 import Form from '../Form/Form';
 import WeatherGrid from './WeatherGrid'
-import {type WeatherApiResponse} from '../types/Api.type'
+import { type WeatherApiResponse } from '../types/Api.type'
 import { useCallback, useEffect, useReducer, useState } from 'react'
-import {reduceData, initialState} from '../hook/UseReducer'
+import { reduceData, initialState } from '../hook/UseReducer'
 import type { TypeActionData } from '../types/Reduce.type';
-
 
 const WeatherApp = () => {
 
@@ -16,10 +15,10 @@ const WeatherApp = () => {
   const [error, setError] = useState(false)
   const [userNotFound, setUserNotFound] = useState(false)
   const [showTime, setShowTime] = useState(false)
-  const [apiData,setApiData] = useState<WeatherApiResponse | null>(null);
+  const [apiData, setApiData] = useState<WeatherApiResponse | null>(null);
   const [state, dispatch] = useReducer(reduceData, initialState)
 
-  const SelectType = (type:TypeActionData, value: string) => dispatch({type: type, payload: value})
+  const SelectType = (type: TypeActionData, value: string) => dispatch({ type: type, payload: value })
 
 
   const SearchByName = useCallback(async (name: string) => {
@@ -28,9 +27,9 @@ const WeatherApp = () => {
         `https://geocoding-api.open-meteo.com/v1/search?name=${name}`
       );
       const apiResponse = await apiPath.json();
-    
 
-      if (!apiResponse.results || apiResponse.results.length === 0 ) {
+
+      if (!apiResponse.results || apiResponse.results.length === 0) {
         setUserNotFound(true)
         return;
       }
@@ -45,20 +44,20 @@ const WeatherApp = () => {
 
 
       const climaResult = await dadosDoClima.json();
-        setUserNotFound(false)
-        setError(false)
-        setShowTime(true)
-        setTimeout(() => {
-            setApiData(climaResult);
-        }, 5000)
-    
+      setUserNotFound(false)
+      setError(false)
+      setShowTime(true)
+      setTimeout(() => {
+        setApiData(climaResult);
+      }, 5000)
+
     } catch (err) {
       console.error(err);
-         setError(true)
-         setShowTime(false)
+      setError(true)
+      setShowTime(false)
     }
   }, []
-)
+  )
 
   useEffect(() => {
     SearchByName(city)
@@ -72,12 +71,13 @@ const WeatherApp = () => {
     setCity('')
   }
 
+
   return (
     <div>
-    <Navbar state={state} SelectType={SelectType} />
-     {error || apiData === undefined  ? <Error reset={reset}/> : <Form searchInput={searchInput}  handleChange={handleChange} />}
-     {userNotFound   && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
-     {showTime && <WeatherGrid  state={state} SelectType={SelectType} data={apiData} city={city} country={country} />}
+      <Navbar state={state} SelectType={SelectType} />
+      {error || apiData === undefined ? <Error reset={reset} /> : <Form searchInput={searchInput} handleChange={handleChange} />}
+      {userNotFound && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
+      {showTime && <WeatherGrid state={state} SelectType={SelectType} data={apiData} city={city} country={country} />}
     </div>
   )
 }
