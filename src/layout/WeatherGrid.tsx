@@ -1,7 +1,7 @@
 import { PulseLoader } from 'react-spinners'
 import DropContainer from '../components/drop/DropContainer';
 import ListV2 from '../components/drop/Drop-items/ListItemV2';
-import {selectWeatherIcon} from '../components/data/WeatherIcons'
+import {UseWeathercode} from '../hook/UseWeathercode'
 import FullBlocks from '../components/GridBlocks/FullBlocks';
 import type { CommunType } from '../types/ComumReduce.type';
 import { useState } from 'react';
@@ -15,10 +15,6 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
       return name === 'celsius' ? result1.toFixed(0) : result2.toFixed(0)
   }
   
-  
-  
-  
-
     const today = new Date().toISOString().split('T')[0]; 
     const currentDate = new Date()
     const months = [
@@ -34,7 +30,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
   "Oct",
   "Nov",
   "Dec"
-  ]
+    ]
 
   const selectMoth = (month:number) => months[month]
   const [title, setTitle] = useState('Monday')
@@ -94,7 +90,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
               </div>
 
               <div className='flex flex-row  items-center font-bold text-white'>
-                <img src={selectWeatherIcon(1)} className=' w-13 md:w-20' alt=''/>
+                <img src={UseWeathercode(1)} className=' w-13 md:w-20' alt=''/>
                 <p className='text-[2em] xl:text-[4em] '>{UseTemp(data.current.temperature_2m,state.temperature)}°</p>
               </div>
               

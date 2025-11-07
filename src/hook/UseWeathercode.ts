@@ -1,4 +1,4 @@
-import type { WeatherIconsType } from "../../types/Weather.Icons.type";
+import type { WeatherIconsType } from "../types/Weather.Icons.type";
 import Drizzle from '../../assets/images/icon-drizzle.webp'
 import   Fog  from  '../../assets/images/icon-fog.webp'
 import  Overcast from '../../assets/images/icon-overcast.webp'
@@ -20,7 +20,7 @@ export const WeatherIconsList:WeatherIconsType = {
 }
 
 
-export const selectWeatherIcon = (code: number): string => {
+export const UseWeathercode = (code: number): string => {
    switch(code) {
         case 0:
         case 1:
