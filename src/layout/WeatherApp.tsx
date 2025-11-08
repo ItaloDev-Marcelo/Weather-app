@@ -7,6 +7,18 @@ import { useCallback, useEffect, useReducer, useState } from 'react'
 import { reduceData, initialState } from '../hook/UseReducer'
 import type { TypeActionData } from '../types/Reduce.type';
 
+
+export interface GeocodingApiResponse {
+  results?: {
+    id: number;
+    name: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+    timezone: string;
+  }[];
+}
+
 const WeatherApp = () => {
 
   const [city, setCity] = useState('')
@@ -32,8 +44,6 @@ const WeatherApp = () => {
       if (!apiResponse.results || apiResponse.results.length === 0) {
         setUserNotFound(true)
         return;
-      }else {
-        setUserNotFound(false)
       }
 
 
@@ -46,7 +56,7 @@ const WeatherApp = () => {
 
 
       const climaResult = await dadosDoClima.json();
-
+      setUserNotFound(false)
       setError(false)
       setShowTime(true)
       setTimeout(() => {
@@ -60,8 +70,6 @@ const WeatherApp = () => {
     }
   }, []
   )
-
-  
 
   useEffect(() => {
     SearchByName(city)
@@ -80,7 +88,7 @@ const WeatherApp = () => {
     <div>
       <Navbar state={state} SelectType={SelectType} />
       {error || apiData === undefined ? <Error reset={reset} /> : <Form searchInput={searchInput} handleChange={handleChange} />}
-      {userNotFound && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2>}
+      {userNotFound ? <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2> : null}
       {showTime && <WeatherGrid state={state} SelectType={SelectType} data={apiData} city={city} country={country} />}
     </div>
   )

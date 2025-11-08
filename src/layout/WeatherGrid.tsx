@@ -76,8 +76,8 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
   return (
     <section className='flex flex-col lg:flex-row xl:items-start items-center jusify-center  p-5 lg:p-10 '>
       <div className='flex flex-col  gap-1 tb-gap-3 lg:gap-5'>
-        <div className={!data ? 'glassEffect  w-[100%] h-50 tb:h-55 rounded-2xl' : 
-          ' w-[100%] h-50 tb:h-55 rounded-2xl banner '}>
+        <div className={!data ? 'glassEffect  w-[100%] h-50 tb:h-55 xl:h-50 rounded-2xl' : 
+          ' w-[100%] h-50 tb:h-55 xl:h-50 rounded-2xl banner '}>
           <div className='flex flex-col items-center text-center xl:text-left justify-center mt-23 '>
             {!data && <div>
               <PulseLoader size={10} color='#fff' />
@@ -139,7 +139,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
       </div>
 
       <div className='glassEffect tb:w-[81.5%] w-[100%] tb:mt-[-35%]  mt-5 md:mt-[-40%] 
-           lg:mt-3 lg:ml-5  tb:h-100 lg:w-[25%]  h-120 lg:h-144 lg:mb-1 rounded-2xl p-4'>
+           lg:mt-[0rem] lg:ml-5   tb:h-100 lg:w-[25%]  h-120 lg:h-144 lg:mb-1 rounded-2xl p-4'>
         <div className='flex flex-row gap-2 justify-between items-center'>
           <h4 className='text-white font-semibold'>Hourly forecast</h4>
           <DropContainer icon1={false} icon2={true} name={ConvertData ? title : '—' } >
