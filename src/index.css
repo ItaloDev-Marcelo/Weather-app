@@ -27,7 +27,7 @@ border: 1px solid rgba(49, 47, 75, 0.3);
   background: transparent;
   box-shadow: none;
   border: none;
-   background-image: url(../public/images/bg-today-small.svg);
+   background-image: url(../images/bg-today-small.svg);
    background-size: cover;
   background-repeat: no-repeat;
 }
@@ -35,7 +35,7 @@ border: 1px solid rgba(49, 47, 75, 0.3);
 
 @media (min-width: 760px) {
    .banner {
-   background-image: url(../public/images/bg-today-large.svg);
+   background-image: url(../images/bg-today-large.svg);
 } 
 }
 
