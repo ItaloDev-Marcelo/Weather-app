@@ -32,6 +32,8 @@ const WeatherApp = () => {
       if (!apiResponse.results || apiResponse.results.length === 0) {
         setUserNotFound(true)
         return;
+      }else {
+        setUserNotFound(false)
       }
 
 
@@ -44,7 +46,7 @@ const WeatherApp = () => {
 
 
       const climaResult = await dadosDoClima.json();
-      setUserNotFound(false)
+
       setError(false)
       setShowTime(true)
       setTimeout(() => {
@@ -58,6 +60,8 @@ const WeatherApp = () => {
     }
   }, []
   )
+
+  
 
   useEffect(() => {
     SearchByName(city)
