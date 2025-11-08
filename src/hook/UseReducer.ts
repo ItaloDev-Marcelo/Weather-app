@@ -1,7 +1,7 @@
 
 import type { Action, State} from "../types/Reduce.type";
 
-const initialState = {temperature: 'celsius', windSpeed: 'km/h', precipitation: 'mm', weekDay: '—'};
+const initialState:State = {temperature: 'celsius', windSpeed: 'km/h', precipitation: 'mm', weekDay: '—'};
 
 const ActionData = {
      TEMPERATURE: 'TEMPERATURE', 
