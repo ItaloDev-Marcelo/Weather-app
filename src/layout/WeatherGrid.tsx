@@ -101,38 +101,38 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
 
         </div>
         <div className='grid grid-cols-2 md:auto-cols-max md:grid-flow-col 
-         gap-3   grid-row-2 lg:grid-cols-4 lg:gap-5 mt-2.5 w-full'>
-          <div className='  glassEffect  w-41.5 xl:w-52 md:w-45 lg:w-39 h-25  rounded-2xl glassEffect p-2.5 text-white '>
+         gap-4   grid-row-2 lg:grid-cols-4 lg:gap-5 mt-2.5 w-full'>
+          <div className='  glassEffect  w-39 xl:w-52 md:w-45 lg:w-39 h-25  rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Feels Like</h3> <br />
             {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{UseTemp(data.current.apparent_temperature, state.temperature)} °</p> }
           </div>
-          <div className='  glassEffect  w-41.5 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
+          <div className='  glassEffect  w-39 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Humidity</h3> <br />
            {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{data.current.relative_humidity_2m} %</p> }
           </div>
-          <div className='  glassEffect  w-41.5 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
+          <div className='  glassEffect  w-39 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Wind</h3> <br />
                {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'> {UseWind(data.current.wind_speed_10m, state.windSpeed)} {state.windSpeed}</p> }
           </div>
-          <div className='  glassEffect  w-41.5 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
+          <div className='  glassEffect  w-39 xl:w-52 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Precipitation</h3> <br />
                {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'> {UsePrec(Number(data.current.precipitation), state.precipitation)} {state.precipitation}</p> }
           </div>
         </div>
 
         <h4 className='text-white font-bold my-1.5'>Daily forecast</h4>
-        <div className='grid grid-cols-3 md:grid-cols-7  grid-rows-3 lg:grid-cols-7  lg:grid-rows-1 gap-5.5 lg:gap-2.5'>
+        <div className='grid grid-cols-3 md:grid-cols-7  grid-rows-3 lg:grid-cols-7  lg:grid-rows-1 gap-4.5 lg:gap-2.5'>
            {
                     data !== null ? ConvertData?.map((data2) => (
-                    <FullBlocks classInLine='glassEffect  w-25 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={1} data={data2} />
+                    <FullBlocks classInLine='glassEffect  w-24.5 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={1} data={data2} />
                     )) : <>
-                  <FullBlocks classInLine='glassEffect  w-25 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-25 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-25 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-25 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3} />
-                 <FullBlocks classInLine='glassEffect  w-25 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-25 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
-                 <FullBlocks classInLine='glassEffect  w-25 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                  <FullBlocks classInLine='glassEffect  w-24.5 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24.5 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24.5 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24.5 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3} />
+                 <FullBlocks classInLine='glassEffect  w-24.5 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24.5 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
+                 <FullBlocks classInLine='glassEffect  w-24.5 xl:w-29 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
                     </>
                   }
         </div>
