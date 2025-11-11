@@ -44,6 +44,7 @@ border: 1px solid rgba(49, 47, 75, 0.3);
   --breakpoint-tb: 60rem;
 }
 
+
 @plugin "daisyui"
 
 

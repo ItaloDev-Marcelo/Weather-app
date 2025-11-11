@@ -34,7 +34,7 @@ const WeatherApp = () => {
 
 
   const SearchByName = useCallback(async (name: string) => {
-    if(!name.trim()) return
+    
     try {
       const apiPath = await fetch(
         `https://geocoding-api.open-meteo.com/v1/search?name=${name}`
@@ -42,43 +42,43 @@ const WeatherApp = () => {
       const apiResponse = await apiPath.json();
 
       const results = apiResponse?.results;
+    
+    //     if (!Array.isArray(results) || results.length === 0) {
+    //    console.log(results)
+    //   setUserNotFound(true);
+    //   setShowTime(false);
+    //   setApiData(results);
+    //   return;
+    // }
 
-      if(!results || results.length === 0) {
-        setUserNotFound(true);
-      }else {
-        setUserNotFound(false);
-      }
-     
 
       const { latitude, longitude, country} = results?.[0] ?? {};
-      // if(!latitude || !longitude) {
-      //    setUserNotFound(true);
-      //    return
-      // }
-
+      if(!latitude || !longitude) {
+         setUserNotFound(true);
+         return
+      }
       setCountry(country)
-
-      console.log(results)
 
 
       const dadosDoClima = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum&timezone=auto`
       );
 
-      // console.log('dados do Clima',dadosDoClima)
+      console.log('dados do Clima',dadosDoClima)
 
 
       const climaResult = await dadosDoClima.json();
-   
-      // console.log('climaResult', climaResult)
+      setError(false)
+      setShowTime(true)
+      setTimeout(() => {
+        setApiData(climaResult);
+      }, 2500)
 
     } catch (err) {
       console.error(err);
-
+      setError(true)
+      setShowTime(false)
     }
-
-
-
   }, []
   )
 
@@ -86,9 +86,7 @@ const WeatherApp = () => {
     SearchByName(city)
   }, [SearchByName, city])
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
-  }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)
   const searchInput = () => setCity(search)
 
   const reset = () => {
@@ -96,7 +94,7 @@ const WeatherApp = () => {
     setCity('')
   }
 
-  console.log('userNotFound ', userNotFound )
+  console.log('apiData', apiData)
 
   
 
@@ -104,8 +102,7 @@ const WeatherApp = () => {
     <div>
       <Navbar state={state} SelectType={SelectType} />
       {error ? <Error reset={reset} /> : <Form searchInput={searchInput} handleChange={handleChange} />}
-      {userNotFound ? 
-       <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2> : null }
+      {!userNotFound && <h2 className='text-center mt-4 font-bold  text-white lg:text-2xl'>No search result found!</h2> }
       {showTime && <WeatherGrid state={state} SelectType={SelectType} data={apiData} city={city} country={country} />}
     </div>
   )
