@@ -12,7 +12,7 @@ const BlockStyle01 = ({Data, classInLine}:Block01) => {
        </div>
 
        <div className="flex flex-row justify-between gap-1.5 mt-4">
-          <p>{Data?.min}°</p>
+          <p className='mr-3'>{Data?.min}°</p>
           <p>{Data?.max}°</p>
        </div>
        </div>

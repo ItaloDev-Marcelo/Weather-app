@@ -77,7 +77,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
     <section className='flex flex-col lg:flex-row xl:items-start items-center jusify-center  p-5 lg:p-10 '>
       <div className='flex flex-col  gap-1 tb-gap-3 lg:gap-5'>
         <div className={!data ? 'glassEffect  w-[100%] h-50 tb:h-55 xl:h-50 rounded-2xl' : 
-          ' w-[100%] h-50 tb:h-55 xl:h-50 rounded-2xl banner '}>
+          ' w-[100%] h-50 tb:h-55 xl:h-52 rounded-2xl banner'}>
           <div className='flex flex-col items-center text-center xl:text-left justify-center mt-23 '>
             {!data && <div>
               <PulseLoader size={10} color='#fff' />
