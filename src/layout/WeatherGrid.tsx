@@ -36,14 +36,14 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
   const [title, setTitle] = useState('Monday')
 
     
-    const FormateData = data && data.hourly.time.map((t, i) => ({
+    const FormateData = data && data?.hourly?.time.map((t, i) => ({
     day: t.slice(0,10),
     time: t.slice(11,13),
     temperature: UseTemp(data.hourly.temperature_2m[i],state.temperature),
     weathercode: data.hourly.weathercode[i]
   }))
 
-    const ConvertData = data && data.daily.time.map((dt, index) => ({
+    const ConvertData = data && data?.daily?.time.map((dt, index) => ({
     dt,
     max: Number(UseTemp(data.daily.temperature_2m_max[index],state.temperature)),
     min: Number(UseTemp(data.daily.temperature_2m_min[index],state.temperature)),
