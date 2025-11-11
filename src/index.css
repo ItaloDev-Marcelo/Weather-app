@@ -31,20 +31,15 @@ border: 1px solid rgba(49, 47, 75, 0.3);
 
 
 .banner {
-  background: transparent;
-  box-shadow: none;
-  border: none;
-   background-image: url(./assets/images/bg-today-small.svg);
-   background-size: cover;
-  background-repeat: no-repeat;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+
 }
 
 
-@media (min-width: 760px) {
-   .banner {
-   background-image: url(./assets/images/bg-today-large.svg);
-} 
-}
+
 
 
 @theme {
