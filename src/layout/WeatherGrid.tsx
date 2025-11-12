@@ -6,62 +6,30 @@ import FullBlocks from '../components/GridBlocks/FullBlocks';
 import type { CommunType } from '../types/ComumReduce.type';
 import { useState } from 'react';
 import UseGetDay from '../hook/UseGetDay';
+import ConverteTemperature from '../utils/ConverteTemperature';
+import ConvertePrecipitation from '../utils/ConvertePrecipitation'
+import ConverteWind from '../utils/ConverteWind'
+import SelectMonth from '../utils/SelectMonth'
 const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
-
-
-  const UseTemp = (valor : number, name: string) => {
-    const result1 = valor;
-    const result2 =  (valor * 9) / 5 + 32
-      return name === 'celsius' ? result1.toFixed(0) : result2.toFixed(0)
-  }
-  
     const today = new Date().toISOString().split('T')[0]; 
     const currentDate = new Date()
-    const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
-    ]
-
-  const selectMoth = (month:number) => months[month]
-  const [title, setTitle] = useState('Monday')
+    const [title, setTitle] = useState('Monday')
 
     
     const FormateData = data && data?.hourly?.time.map((t, i) => ({
     day: t.slice(0,10),
     time: t.slice(11,13),
-    temperature: UseTemp(data.hourly.temperature_2m[i],state.temperature),
+    temperature: ConverteTemperature(data.hourly.temperature_2m[i],state.temperature),
     weathercode: data.hourly.weathercode[i]
   }))
 
     const ConvertData = data && data?.daily?.time.map((dt, index) => ({
     dt,
-    max: Number(UseTemp(data.daily.temperature_2m_max[index],state.temperature)),
-    min: Number(UseTemp(data.daily.temperature_2m_min[index],state.temperature)),
+    max: Number(ConverteTemperature(data.daily.temperature_2m_max[index],state.temperature)),
+    min: Number(ConverteTemperature(data.daily.temperature_2m_min[index],state.temperature)),
     weathercode: data.daily.weathercode[index]
   }))
 
-  const UseWind = (valor : number,name: string) => {
-    const result1 = valor;
-    const result2 = valor /1.609
-    return name === 'km/h' ? Number(result1.toFixed(2)) : Number(result2.toFixed(2))
-  }
-  
-
-   const UsePrec = (valor : number,name: string) => {
-    const result1 = valor 
-    const result2 = valor / 25.4
-    return  name === 'mm' ? Number(result1.toFixed(1)) : Number(result2.toFixed(1))
-  }
 
   const ChangeTitle = (titleLabel:string) =>  setTitle(titleLabel)
   const filterbyDay = FormateData?.filter(item => state.weekDay !== '—' ?
@@ -87,12 +55,12 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
               <div className='text-white md:text-left'>
                 <h4 className='text-[1.7em] xl:text-[2em] font-bold'>{country}, {city}</h4>
                 <p className='text-[.9em]   font-normal'>{`${ ConvertData && UseGetDay(ConvertData[0].dt, 2)} ,   
-                ${selectMoth(currentDate.getMonth())} ${currentDate.getDate()},  ${currentDate.getFullYear()}`} </p>
+                ${SelectMonth(currentDate.getMonth())} ${currentDate.getDate()},  ${currentDate.getFullYear()}`} </p>
               </div>
 
               <div className='flex flex-row  items-center w-[80%]  justify-between md:w-[30%] md:justify-none font-bold text-white mt-5'>
                 <img src={UseWeathercode(1)} className=' w-27 md:w-20' alt=''/>
-                <p className='text-[4em] md:text-[6em] '>{UseTemp(data.current.temperature_2m,state.temperature)}°</p>
+                <p className='text-[4em] md:text-[6em] '>{ConverteTemperature(data.current.temperature_2m,state.temperature)}°</p>
               </div>
               
             </div>}
@@ -104,7 +72,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
          gap-4  grid-row-2 lg:grid-cols-4 lg:gap-5 xl:gap-2.5 mt-2.5 md:mt-5 xl:mt-2.5  w-full xl:w-[100%] '>
           <div className='  glassEffect  w-39 xl:w-45 md:w-45 lg:w-39 h-25  rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Feels Like</h3> <br />
-            {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{UseTemp(data.current.apparent_temperature, state.temperature)} °</p> }
+            {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{ConverteTemperature(data.current.apparent_temperature, state.temperature)} °</p> }
           </div>
           <div className='  glassEffect  w-39 xl:w-45 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Humidity</h3> <br />
@@ -112,11 +80,11 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
           </div>
           <div className='  glassEffect  w-39 xl:w-45 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Wind</h3> <br />
-               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'> {UseWind(data.current.wind_speed_10m, state.windSpeed)} {state.windSpeed}</p> }
+               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'> {ConverteWind(data.current.wind_speed_10m, state.windSpeed)} {state.windSpeed}</p> }
           </div>
           <div className='  glassEffect  w-39 xl:w-45 md:w-45 lg:w-39 h-25 rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Precipitation</h3> <br />
-               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'> {UsePrec(Number(data.current.precipitation), state.precipitation)} {state.precipitation}</p> }
+               {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'> {ConvertePrecipitation(Number(data.current.precipitation), state.precipitation)} {state.precipitation}</p> }
           </div>
         </div>
 

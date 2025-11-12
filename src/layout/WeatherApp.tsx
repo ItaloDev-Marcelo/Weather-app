@@ -68,10 +68,6 @@ const WeatherApp = () => {
   setApiData(climaResult);
 }, 2500);
 
-    
-    
-
-
 
     } catch (err) {
       console.error(err);
@@ -95,6 +91,7 @@ const WeatherApp = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value)
+    
   }
   const searchInput = () => setCity(search)
 
