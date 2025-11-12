@@ -8,17 +8,6 @@ import { reduceData, initialState } from '../hook/UseReducer'
 import type { TypeActionData } from '../types/Reduce.type';
 
 
-export interface GeocodingApiResponse {
-  results?: {
-    id: number;
-    name: string;
-    country: string;
-    latitude: number;
-    longitude: number;
-    timezone: string;
-  }[];
-}
-
 const WeatherApp = () => {
 
   const [city, setCity] = useState('')
