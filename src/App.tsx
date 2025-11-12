@@ -1,4 +1,4 @@
-import WeatherApp from "./layout/WeatherApp"
+import WeatherApp from "./layouts/WeatherApp"
 
 function App() {
   return <WeatherApp/>

@@ -45,7 +45,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
     <section className='flex flex-col lg:flex-row   items-center justify-center   p-5 lg:p-10 '>
       <div className='flex flex-col  gap-1 tb-gap-3 lg:gap-5'>
         <div className={!data ? 'glassEffect  w-[100%] h-70  rounded-2xl' : 
-          ' w-[100%]  h-70  banner rounded-2xl bg-no-repeat  bg-[#000] bg-[url(./assets/images/bg-today-small.svg)] md:bg-[url(./assets/images/bg-today-large.svg)]'}>
+           ' w-[100%]  h-70  banner rounded-2xl bg-no-repeat  bg-[#000] bg-[url(./assets/images/bg-today-small.svg)] md:bg-[url(./assets/images/bg-today-large.svg)]'}>
           <div className='flex flex-col items-center text-center xl:text-left justify-center mt-23 '>
             {!data && <div>
               <PulseLoader size={10} color='#fff' />
@@ -91,8 +91,9 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
         <h4 className='text-white font-bold my-1.5'>Daily forecast</h4>
         <div className='grid grid-cols-3 md:grid-cols-7  grid-rows-3 lg:grid-cols-7  lg:grid-rows-1 gap-4.5 lg:gap-1.5'>
            {
-                    data !== null ? ConvertData?.map((data2) => (
-                    <FullBlocks classInLine='glassEffect  w-24.5 xl:w-24 h-35 md:h-40 xl:h-35  rounded-2xl glassEffect' type={1} data={data2} />
+                    data !== null ? ConvertData?.map((data2, index) => (
+                    <FullBlocks classInLine='glassEffect  w-24.5 xl:w-24 h-35 md:h-40 xl:h-35  rounded-2xl glassEffect'
+                     type={1} data={data2} key={index} />
                     )) : <>
                   <FullBlocks classInLine='glassEffect  w-24.5 xl:w-22 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
                  <FullBlocks classInLine='glassEffect  w-24.5 xl:w-22 h-35 md:h-40  rounded-2xl glassEffect' type={3}  />
@@ -126,10 +127,10 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
         </div>
          <div className='mt-2.5 overflow-y-scroll   h-97  tb:h-70 md:h-85 xl:h-133'>
            {
-                    data !== null ? filterbyDay?.map((data1) => (
+                    data !== null ? filterbyDay?.map((data1, index) => (
                            <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12   rounded-[5px] glassEffect  my-4.5'
                             type={2}
-                            data={data1} />
+                            data={data1} key={index} />
                     )) : <>
                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />
                  <FullBlocks classInLine='glassEffect  w-[100%]  h-12  rounded-[5px] glassEffect  my-1.5 md:my-4.5' type={3}  />

@@ -80,6 +80,9 @@ const WeatherApp = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value)
+    if(apiData) {
+        setApiData(null)
+    }
     
   }
   const searchInput = () => setCity(search)
