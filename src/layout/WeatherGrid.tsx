@@ -76,23 +76,23 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
   return (
     <section className='flex flex-col lg:flex-row   items-center justify-center   p-5 lg:p-10 '>
       <div className='flex flex-col  gap-1 tb-gap-3 lg:gap-5'>
-        <div className={!data ? 'glassEffect  w-[100%] h-50 tb:h-55 xl:h-70 rounded-2xl' : 
-          ' w-[100%] xl:w-[100%] h-50 tb:h-55 xl:h-70  banner rounded-2xl bg-no-repeat  bg-[#000] bg-[url(./assets/images/bg-today-small.svg)] lg:bg-[url(./assets/images/bg-today-large.svg)]'}>
+        <div className={!data ? 'glassEffect  w-[100%] h-70  rounded-2xl' : 
+          ' w-[100%]  h-70  banner rounded-2xl bg-no-repeat  bg-[#000] bg-[url(./assets/images/bg-today-small.svg)] md:bg-[url(./assets/images/bg-today-large.svg)]'}>
           <div className='flex flex-col items-center text-center xl:text-left justify-center mt-23 '>
             {!data && <div>
               <PulseLoader size={10} color='#fff' />
             <p className='text-white text-[1.2em] mt-2 xl:mt-6'>Loading...</p></div>}
 
-            {data && <div className='flex flex-col md:flex-row  justify-between items-center w-[100%]  mt-[-2em] px-4'>
-              <div className='text-white'>
-                <h4 className='text-[1.5em] xl:text-[1.2em] font-bold'>{country}, {city}</h4>
-                <p className='text-[1.5em] xl:text-[1.2em]  font-bold'>{`${ ConvertData && UseGetDay(ConvertData[0].dt, 2)} ,   
+            {data && <div className='flex flex-col md:flex-row  justify-between items-center w-[100%]  mt-[-2em] px-4 md:px-7'>
+              <div className='text-white md:text-left'>
+                <h4 className='text-[1.7em] xl:text-[2em] font-bold'>{country}, {city}</h4>
+                <p className='text-[.9em]   font-normal'>{`${ ConvertData && UseGetDay(ConvertData[0].dt, 2)} ,   
                 ${selectMoth(currentDate.getMonth())} ${currentDate.getDate()},  ${currentDate.getFullYear()}`} </p>
               </div>
 
-              <div className='flex flex-row  items-center font-bold text-white'>
-                <img src={UseWeathercode(1)} className=' w-13 md:w-20' alt=''/>
-                <p className='text-[2em] xl:text-[4em] '>{UseTemp(data.current.temperature_2m,state.temperature)}°</p>
+              <div className='flex flex-row  items-center w-[80%]  justify-between md:w-[30%] md:justify-none font-bold text-white mt-5'>
+                <img src={UseWeathercode(1)} className=' w-27 md:w-20' alt=''/>
+                <p className='text-[4em] md:text-[6em] '>{UseTemp(data.current.temperature_2m,state.temperature)}°</p>
               </div>
               
             </div>}
@@ -101,7 +101,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
 
         </div>
         <div className='grid grid-cols-2 md:auto-cols-max md:grid-flow-col 
-         gap-4   grid-row-2 lg:grid-cols-4 lg:gap-5 xl:gap-2.5 mt-2.5 w-full xl:w-[100%] '>
+         gap-4  grid-row-2 lg:grid-cols-4 lg:gap-5 xl:gap-2.5 mt-2.5 md:mt-5 xl:mt-2.5  w-full xl:w-[100%] '>
           <div className='  glassEffect  w-39 xl:w-45 md:w-45 lg:w-39 h-25  rounded-2xl glassEffect p-2.5 text-white '>
             <h3>Feels Like</h3> <br />
             {!data ? <p>—</p> : <p className=' mt-[-.5em] text-[1.4em] md:text-[2em]'>{UseTemp(data.current.apparent_temperature, state.temperature)} °</p> }
@@ -138,8 +138,8 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
         </div>
       </div>
 
-      <div className='glassEffect tb:w-[81.5%] w-[100%] tb:mt-[-35%]  mt-5 md:mt-[-40%] 
-           lg:mt-[0rem] lg:ml-5   tb:h-100 lg:w-[25%]  h-120 lg:h-144 xl:h-157 lg:mb-1 rounded-2xl p-4'>
+      <div className='glassEffect tb:w-[87.5%] w-[100%] tb:mt-[-35%]  mt-5 md:mt-[-40%] 
+           lg:mt-[0rem] lg:ml-5   tb:h-90 lg:w-[25%]  h-120 md:h-110 lg:h-144 xl:h-157 lg:mb-1 rounded-2xl p-4'>
         <div className='flex flex-row gap-2 justify-between items-center'>
           <h4 className='text-white font-semibold'>Hourly forecast</h4>
           <DropContainer icon1={false} icon2={true} name={ConvertData ? title : '—' } >
@@ -156,7 +156,7 @@ const WeatherGrid = ({SelectType, state, data, country, city}:CommunType) => {
             <ListV2 hundleFunction={SelectType} label='Sunday' ChangeTitle={ChangeTitle} currentValue={state.weekDay} value={ConvertData && ConvertData[6].dt ? ConvertData[6].dt : '' } ReduceType='WEEKDAY' isIcon={false} />
           </DropContainer>
         </div>
-         <div className='mt-2.5 overflow-y-scroll  h-100 md:h-115 xl:h-133'>
+         <div className='mt-2.5 overflow-y-scroll   h-97  tb:h-70 md:h-85 xl:h-133'>
            {
                     data !== null ? filterbyDay?.map((data1) => (
                            <FullBlocks classInLine='glassEffect  w-[100%] flex flex-row items-center   h-12   rounded-[5px] glassEffect  my-4.5'
